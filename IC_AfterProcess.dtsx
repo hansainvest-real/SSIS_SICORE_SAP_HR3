@@ -1,0 +1,1478 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/3/2014 8:09:52 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DBP331003"
+  DTS:CreatorName="SYSTEM\u088524"
+  DTS:DTSID="{D25D450A-4D25-4964-8D21-22722FF8845E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="IC_AfterProcess"
+  DTS:PackageType="5"
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{3988D94D-44FF-4CF2-BFC7-DAF985123F7B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9A83E70D-E8B2-47D1-B60E-BCF65673E3DB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="GJahr">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{45DCC361-2693-4352-9695-D813FC4608EC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sNeueBelege">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FF50F261-FC32-4954-B0C9-F52E15FE52D1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sNeueBukrse">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{97B5EA08-77E6-4464-AE69-21F741DF1C2C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sNeueKonten">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F928C956-0A91-4AED-8C14-87B7FAB4CCDF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sNeuePrctr">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{91B0A4B5-9EA9-4E91-B680-0A36A8F0E3C3}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC P_SYSLOG_StartLog 'Neue Belege:&quot; + @[User::sNeueBelege] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Startlog_NeueBelege">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC P_SYSLOG_StartLog 'Neue Belege:'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{82F3E360-884F-4C30-A6DD-CE421FC17C83}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC P_SYSLOG_StartLog 'Neue Bukrse:&quot; + @[User::sNeueBukrse] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Startlog_NeueBukrse">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC P_SYSLOG_StartLog 'Neue Bukrse:'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EB8002C1-8BA9-4562-91E9-AB2EDDB7A3BB}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC P_SYSLOG_StartLog 'Neue Konten:&quot; + @[User::sNeueKonten] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Startlog_NeueKonten">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC P_SYSLOG_StartLog 'Neue Konten:'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{36448F72-3D9E-44D5-A314-B630D9E5D76C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC P_SYSLOG_StartLog 'Neue Prctr:&quot; + @[User::sNeuePrctr] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Startlog_NeuePrctr">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC P_SYSLOG_StartLog 'Neue Prctr:'</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CAB982D2-7EF8-4750-9938-2C3481851EDD}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC P_SYSLOG_StopLog 'Neue Belege:&quot; + @[User::sNeueBelege] + &quot;',0&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Stoplog_NeueBelege">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC P_SYSLOG_StopLog 'Neue Belege:',0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{42C67CAB-3C03-4425-A85F-2DE288CEFF67}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC P_SYSLOG_StopLog 'Neue Bukrse:&quot; + @[User::sNeueBukrse] + &quot;',0&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Stoplog_NeueBukrse">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC P_SYSLOG_StopLog 'Neue Bukrse:',0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CD003B4E-A313-4BB3-8645-707C115923A6}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC P_SYSLOG_StopLog 'Neue Konten:&quot; + @[User::sNeueKonten] + &quot;',0&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Stoplog_NeueKonten">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC P_SYSLOG_StopLog 'Neue Konten:',0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F30A4C42-9784-4B91-A63B-951A9A1D5450}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC P_SYSLOG_StopLog 'Neue Prctr:&quot; + @[User::sNeuePrctr]  + &quot;',0&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Stoplog_NeuePrctr">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC P_SYSLOG_StopLog 'Neue Prctr:',0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Beteiligungen aktualisieren"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{e2a59d31-5190-4df4-b5c5-86841e1291bd}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Beteiligungen aktualisieren"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="exec ImmoControlling_RDB_DataEntry.[dbo].[P_Prozess_Fill_T_O_BUKRS_Values]&#xA;exec ImmoControlling_RDB_DataEntry.[dbo].[P_Prozess_Beteiligungen_aktualisieren]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Kennzahlen verarbeiten"
+      DTS:CreationName="Microsoft.DTSProcessingTask"
+      DTS:Description="Analysis Services-Verarbeitungstask"
+      DTS:Disabled="True"
+      DTS:DTSID="{1727fb80-499a-4082-b50d-d104ec39112b}"
+      DTS:ExecutableType="Microsoft.DTSProcessingTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Kennzahlen verarbeiten"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ASProcessingData
+          ConnectionName="OLAP_Target"
+          ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;ImmoControlling_OLAP&lt;/DatabaseID&gt;&#xA;      &lt;CubeID&gt;ImmoControlling&lt;/CubeID&gt;&#xA;      &lt;MeasureGroupID&gt;MG_Kennzahlen&lt;/MeasureGroupID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessFull&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Kennzahlen verarbeiten Layer 2"
+      DTS:CreationName="Microsoft.DTSProcessingTask"
+      DTS:Description="Analysis Services-Verarbeitungstask"
+      DTS:Disabled="True"
+      DTS:DTSID="{782c2846-75f0-4a47-ac79-3418ba414516}"
+      DTS:ExecutableType="Microsoft.DTSProcessingTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Kennzahlen verarbeiten Layer 2"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ASProcessingData
+          ConnectionName="OLAP_Target"
+          ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;ImmoControlling_OLAP&lt;/DatabaseID&gt;&#xA;      &lt;CubeID&gt;ImmoControlling&lt;/CubeID&gt;&#xA;      &lt;MeasureGroupID&gt;MG_Kennzahlen&lt;/MeasureGroupID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessFull&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Proc After Process"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{85d566d0-5071-4375-afba-0602489355a1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Proc After Process"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="exec P_APP_RUN_AFTER_PROCESS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Proc After Process Layer 2"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{5ada8be3-a5ff-47f4-93f5-a0de97763310}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Proc After Process Layer 2"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="exec P_APP_RUN_AFTER_PROCESS_Layer_02" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Neue Beleg_Nr"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequenzcontainer"
+      DTS:Disabled="True"
+      DTS:DTSID="{68ed3124-cb3c-4a92-808b-12fd45167596}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Neue Beleg_Nr">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue Beleg_Nr\Erfasse Neue Belege"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{d0422ac7-1994-47a0-b5e4-2f61a18d8ac6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Erfasse Neue Belege"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStatementSource="DECLARE @BELNR NVARCHAR(255);&#xA;DECLARE @BELNR_List NVARCHAR(4000) = '';&#xA;Declare @GJahr INT;&#xA;Set @GJahr = 0&#xA;&#xA;Select @GJahr = GJAHR from [ImmoControlling_RDB_Import].[dbo].T_S_DeltaLoad&#xA;&#xA;DECLARE cur_BELNR CURSOR FOR SELECT BELNR&#xA;                           FROM [ImmoControlling_RDB_Import].[dbo].[T_Import_FACT_BKPF]&#xA;                           WHERE (LEFT(CPUDT, 4) = LEFT(CONVERT(VARCHAR(8), GETDATE(), 112),4) AND LEFT(BLDAT, 4) &gt; @GJahr AND GJAHR &gt; @GJahr)&#xA;                                           GROUP BY BELNR, CPUDT&#xA;                           HAVING (CPUDT) &gt; CONVERT(VARCHAR(8), DATEADD(DAY,0,GETDATE()-3), 112)&#xA;&#xA;open cur_BELNR&#xA;&#xA;FETCH NEXT FROM cur_BELNR INTO @BELNR&#xA;&#xA;WHILE (@@FETCH_STATUS = 0)&#xA;BEGIN&#xA; SET @BELNR_List = @BELNR_List + '   ' + @BELNR&#xA; FETCH NEXT FROM cur_BELNR INTO @BELNR&#xA;END&#xA;&#xA;CLOSE cur_BELNR&#xA;DEALLOCATE cur_BELNR&#xA;&#xA;SELECT @BELNR_List"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::sNeueBelege" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::GJahr"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue Beleg_Nr\StartLog Neue Belege"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{b2c8ecc1-0ac4-42e1-b466-3c771bae51f0}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="StartLog Neue Belege"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::sStrSQL_Startlog_NeueBelege" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue Beleg_Nr\Stop Log Neue Belege"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{010e3395-46ea-4a6c-ae25-507770237e98}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stop Log Neue Belege"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::sStrSQL_Stoplog_NeueBelege" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Neue Beleg_Nr.PrecedenceConstraints[Einschränkung]"
+          DTS:CreationName=""
+          DTS:DTSID="{c2a341e7-3931-447f-9431-d490b5b23c91}"
+          DTS:EvalOp="3"
+          DTS:Expression="LEN(@[User::sNeueBelege])&gt;0"
+          DTS:From="Package\SEQC Neue Beleg_Nr\Erfasse Neue Belege"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Einschränkung"
+          DTS:To="Package\SEQC Neue Beleg_Nr\StartLog Neue Belege" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Neue Beleg_Nr.PrecedenceConstraints[Einschränkung 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{401aba2f-b699-4614-841c-df993d6e60b3}"
+          DTS:From="Package\SEQC Neue Beleg_Nr\StartLog Neue Belege"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Einschränkung 1"
+          DTS:To="Package\SEQC Neue Beleg_Nr\Stop Log Neue Belege" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Neue BUKRS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequenzcontainer"
+      DTS:DTSID="{80a6bf6b-6611-46e1-86e2-a4791a6d2bf8}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Neue BUKRS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue BUKRS\Erfasse Neue BUKRS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{4b59b37c-4609-416d-bc23-e4463402e5e5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Erfasse Neue BUKRS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStatementSource="DECLARE @BUKRS NVARCHAR(255)&#xA;DECLARE @BUKRS_List NVARCHAR(4000) = ''&#xA;DECLARE cur_BUKRS CURSOR FOR SELECT BUKRS&#xA;                             FROM [ImmoControlling_RDB_Import].[dbo].[T_Import_FACT_BKPF]&#xA;                             GROUP BY BUKRS&#xA;                             HAVING MIN(CPUDT) &gt; CONVERT(VARCHAR(8), DATEADD(DAY,0,GETDATE()-3), 112)&#xA;&#xA;open cur_BUKRS&#xA;&#xA;FETCH NEXT FROM cur_BUKRS INTO @BUKRS&#xA;&#xA;WHILE (@@FETCH_STATUS = 0)&#xA;BEGIN&#xA;&#x9;SET @BUKRS_List = @BUKRS_List + '   ' + @BUKRS&#xA;&#x9;FETCH NEXT FROM cur_BUKRS INTO @BUKRS&#xA;END&#xA;&#xA;CLOSE cur_BUKRS&#xA;DEALLOCATE cur_BUKRS&#xA;&#xA;SELECT @BUKRS_List"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::sNeueBukrse" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::GJahr"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue BUKRS\StartLog Neue BUKRS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{ad7357d3-a25c-4c1b-93ea-e2f6123cc081}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="StartLog Neue BUKRS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::sStrSQL_Startlog_NeueBukrse" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue BUKRS\Stop Log Neue BUKRS"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{7923d07e-2e01-477f-81ff-d47fd9cc68dd}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stop Log Neue BUKRS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::sStrSQL_Stoplog_NeueBukrse" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Neue BUKRS.PrecedenceConstraints[Einschränkung]"
+          DTS:CreationName=""
+          DTS:DTSID="{7c271b44-0d50-4ac6-b1fa-af924e209fe3}"
+          DTS:EvalOp="3"
+          DTS:Expression="LEN(@[User::sNeueBukrse])&gt;0"
+          DTS:From="Package\SEQC Neue BUKRS\Erfasse Neue BUKRS"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Einschränkung"
+          DTS:To="Package\SEQC Neue BUKRS\StartLog Neue BUKRS" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Neue BUKRS.PrecedenceConstraints[Einschränkung 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{b8f4998b-7a85-4047-b33e-8d483beeb36b}"
+          DTS:From="Package\SEQC Neue BUKRS\StartLog Neue BUKRS"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Einschränkung 1"
+          DTS:To="Package\SEQC Neue BUKRS\Stop Log Neue BUKRS" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Neue Konten"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequenzcontainer"
+      DTS:DTSID="{A4065610-D243-4901-8D3A-3C5C0A8A00BF}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Neue Konten">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue Konten\Erfasse Neue Konten"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{54e6c4c5-a650-4a78-8dd9-4bb5aadb68dd}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Erfasse Neue Konten"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStatementSource="DECLARE @HKONT NVARCHAR(255)&#xA;DECLARE @HKONT_List NVARCHAR(4000) = ''&#xA;DECLARE cur_HKONT CURSOR FOR SELECT HKONT&#xA;                             FROM [ImmoControlling_RDB_Data].[dbo].[TMV_Import_FACT_BSEG]&#xA;                             GROUP BY HKONT&#xA;                             HAVING MIN(BLDAT) &gt; CONVERT(VARCHAR(8), DATEADD(DAY,0,GETDATE()-3), 112)&#xA;&#xA;open cur_HKONT&#xA;&#xA;FETCH NEXT FROM cur_HKONT INTO @HKONT&#xA;&#xA;WHILE (@@FETCH_STATUS = 0)&#xA;BEGIN&#xA;&#x9;SET @HKONT_List = @HKONT_List + '   ' + @HKONT&#xA;&#x9;FETCH NEXT FROM cur_HKONT INTO @HKONT&#xA;END&#xA;&#xA;CLOSE cur_HKONT&#xA;DEALLOCATE cur_HKONT&#xA;&#xA;SELECT @HKONT_List"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::sNeueKonten" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue Konten\StartLog Neue Konten"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{4aaa8d29-cdc1-4dec-b6d6-437e1e89f866}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="StartLog Neue Konten"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::sStrSQL_Startlog_NeueKonten" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue Konten\Stop Log Neue Knoten"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{52314f7f-6e26-448e-921b-6741964be532}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stop Log Neue Knoten"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::sStrSQL_Stoplog_NeueKonten" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Neue Konten.PrecedenceConstraints[Einschränkung]"
+          DTS:CreationName=""
+          DTS:DTSID="{6376CF6C-CE0F-4B6D-931F-9B52D65B372A}"
+          DTS:EvalOp="3"
+          DTS:Expression="LEN(@[User::sNeueKonten])&gt;0"
+          DTS:From="Package\SEQC Neue Konten\Erfasse Neue Konten"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Einschränkung"
+          DTS:To="Package\SEQC Neue Konten\StartLog Neue Konten" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Neue Konten.PrecedenceConstraints[Einschränkung 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{116C5C67-F4D9-4D70-8587-AF085C014910}"
+          DTS:From="Package\SEQC Neue Konten\StartLog Neue Konten"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Einschränkung 1"
+          DTS:To="Package\SEQC Neue Konten\Stop Log Neue Knoten" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Neue PRCTR"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequenzcontainer"
+      DTS:DTSID="{a6eea668-22c3-46ef-990c-fed4b51fc318}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Neue PRCTR">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue PRCTR\Erfasse Neue PRCTR"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{85a2566b-e685-47b7-bc4c-a9d1815f60b5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Erfasse Neue PRCTR"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStatementSource="DECLARE @PRCTR NVARCHAR(255)&#xA;DECLARE @PRCTR_List NVARCHAR(4000) = ''&#xA;DECLARE cur_PRCTR CURSOR FOR SELECT PRCTR&#xA;                             FROM [ImmoControlling_RDB_Data].[dbo].[TMV_Import_FACT_BSEG]&#xA;                             GROUP BY PRCTR&#xA;                             HAVING MIN(BLDAT) &gt; CONVERT(VARCHAR(8), DATEADD(DAY,0,GETDATE()-3), 112)&#xA;&#xA;open cur_PRCTR&#xA;&#xA;FETCH NEXT FROM cur_PRCTR INTO @PRCTR&#xA;&#xA;WHILE (@@FETCH_STATUS = 0)&#xA;BEGIN&#xA;&#x9;SET @PRCTR_List = @PRCTR_List + '   ' + @PRCTR&#xA;&#x9;FETCH NEXT FROM cur_PRCTR INTO @PRCTR&#xA;END&#xA;&#xA;CLOSE cur_PRCTR&#xA;DEALLOCATE cur_PRCTR&#xA;&#xA;SELECT @PRCTR_List"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::sNeuePrctr" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::GJahr"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue PRCTR\StartLog Neue PRCTR"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{0e148dfd-0ccf-43fa-ba3e-4b3eb0d51eda}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="StartLog Neue PRCTR"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::sStrSQL_Startlog_NeuePrctr" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Neue PRCTR\Stop Log Neue PRCTR"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{071c300a-5003-4df0-8254-75f230d7cfc8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Stop Log Neue PRCTR"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::sStrSQL_Stoplog_NeuePrctr" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Neue PRCTR.PrecedenceConstraints[Einschränkung]"
+          DTS:CreationName=""
+          DTS:DTSID="{a5f9d0de-f380-4f67-b9d7-ddd52b9802ca}"
+          DTS:EvalOp="3"
+          DTS:Expression="LEN(@[User::sNeuePrctr])&gt;0"
+          DTS:From="Package\SEQC Neue PRCTR\Erfasse Neue PRCTR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Einschränkung"
+          DTS:To="Package\SEQC Neue PRCTR\StartLog Neue PRCTR" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Neue PRCTR.PrecedenceConstraints[Einschränkung 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{d633896f-21c0-4e2b-8d6b-d8a7a61991ce}"
+          DTS:From="Package\SEQC Neue PRCTR\StartLog Neue PRCTR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Einschränkung 1"
+          DTS:To="Package\SEQC Neue PRCTR\Stop Log Neue PRCTR" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\StartLog After Process"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{2ff3fbfe-76f9-4266-a692-47c0e92d300f}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="StartLog After Process"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StartLog 'After Process'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\StartLog After Process Layer 2"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{b36794e3-3666-4e62-8c3c-6f651c55a63d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="StartLog After Process Layer 2"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StartLog 'After Process Layer 2'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\StartLog Beteiligungen aktualisieren"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{96dcaffd-b07e-438f-a4b8-f7ab1cf8f70c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="StartLog Beteiligungen aktualisieren"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StartLog 'Beteiligungen aktualisieren'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stop Log After Process"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{4c84dded-024f-4c24-a823-3f8562dd5b67}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stop Log After Process"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StopLog 'After Process', 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stop Log After Process Layer 2"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{f74163c4-ffee-42a3-a5b8-84eeaa78cc1b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stop Log After Process Layer 2"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StopLog 'After Process Layer 2', 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stop Log Beteiligungen aktualisieren"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{4e4d6f2a-9e71-4903-9cb4-0d5d1396a628}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stop Log Beteiligungen aktualisieren"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StopLog 'Beteiligungen aktualisieren', 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung]"
+      DTS:CreationName=""
+      DTS:DTSID="{1C572FD7-04BD-469C-B8F8-B410FB69E5C4}"
+      DTS:From="Package\Stop Log After Process Layer 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung"
+      DTS:To="Package\StartLog Beteiligungen aktualisieren" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{28FDADCC-283D-4AE0-AA35-1E1BB29E5446}"
+      DTS:From="Package\Stop Log Beteiligungen aktualisieren"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 1"
+      DTS:To="Package\SEQC Neue Konten" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{B81F9979-1BF2-429A-A811-D98DAD985091}"
+      DTS:From="Package\SEQC Neue Konten"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 2"
+      DTS:To="Package\SEQC Neue BUKRS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{611CE5E8-9A1C-48B0-9204-E1B3DA46BB76}"
+      DTS:From="Package\SEQC Neue BUKRS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 4"
+      DTS:To="Package\SEQC Neue PRCTR" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 71]"
+      DTS:CreationName=""
+      DTS:DTSID="{f0df41c7-c488-4333-bd5b-8f45a74db965}"
+      DTS:From="Package\StartLog After Process"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 71"
+      DTS:To="Package\Proc After Process" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 72]"
+      DTS:CreationName=""
+      DTS:DTSID="{f9525f71-82a9-4dd6-93bf-0e81764c1452}"
+      DTS:From="Package\Stop Log After Process"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 72"
+      DTS:To="Package\StartLog After Process Layer 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 73]"
+      DTS:CreationName=""
+      DTS:DTSID="{9e1a453b-8a74-4d4a-a4d3-d92f71fb0536}"
+      DTS:From="Package\Kennzahlen verarbeiten"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 73"
+      DTS:To="Package\Stop Log After Process" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 74]"
+      DTS:CreationName=""
+      DTS:DTSID="{1298bd91-93dc-42a5-8010-23ba905e2886}"
+      DTS:From="Package\Proc After Process"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 74"
+      DTS:To="Package\Kennzahlen verarbeiten" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 76]"
+      DTS:CreationName=""
+      DTS:DTSID="{c11d8a1d-2f46-47d0-a2bb-d44408ddff8b}"
+      DTS:From="Package\Kennzahlen verarbeiten Layer 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 76"
+      DTS:To="Package\Stop Log After Process Layer 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 77]"
+      DTS:CreationName=""
+      DTS:DTSID="{131a2958-81d8-4e6c-b420-b9d78eebf665}"
+      DTS:From="Package\StartLog After Process Layer 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 77"
+      DTS:To="Package\Proc After Process Layer 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 78]"
+      DTS:CreationName=""
+      DTS:DTSID="{2882ec19-1067-4227-b67c-14109623892f}"
+      DTS:From="Package\Proc After Process Layer 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 78"
+      DTS:To="Package\Kennzahlen verarbeiten Layer 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 79]"
+      DTS:CreationName=""
+      DTS:DTSID="{190d0ef4-9446-4eba-9b1b-8250b6be3f53}"
+      DTS:From="Package\StartLog Beteiligungen aktualisieren"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 79"
+      DTS:To="Package\Beteiligungen aktualisieren" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 80]"
+      DTS:CreationName=""
+      DTS:DTSID="{4cef5bb3-3099-4e28-8157-e269d162f88c}"
+      DTS:From="Package\Beteiligungen aktualisieren"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 80"
+      DTS:To="Package\Stop Log Beteiligungen aktualisieren" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Dieser CDATA-Abschnitt enthält die Layoutinformationen des Pakets, z.B. Informationen wie X-/Y-Koordinaten, Breite und Höhe.-->
+<!--Wenn Sie diesen Abschnitt manuell ändern und Ihnen ein Fehler unterläuft, können Sie ihn löschen. -->
+<!--Das Paket kann zwar weiterhin normal geladen werden, aber frühere Layoutinformationen gehen verloren, und die Elemente auf der Entwurfsoberfläche werden vom Designer automatisch neu angeordnet.-->
+<Objects
+  Version="8">
+  <!--Jeder darunter liegende Knoten enthält Eigenschaften, die sich nicht auf das Laufzeitverhalten auswirken.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="134.666666666667,44"
+          Id="Package\Beteiligungen aktualisieren"
+          TopLeft="237.993710691823,276.39622641509" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Kennzahlen verarbeiten"
+          TopLeft="444.238993710691,25.50943396226" />
+        <NodeLayout
+          Size="134.666666666667,44"
+          Id="Package\Kennzahlen verarbeiten Layer 2"
+          TopLeft="455.238993710691,137.71698113207" />
+        <NodeLayout
+          Size="134.666666666667,44"
+          Id="Package\Proc After Process"
+          TopLeft="260.352201257861,27.77358490566" />
+        <NodeLayout
+          Size="134.666666666667,44"
+          Id="Package\Proc After Process Layer 2"
+          TopLeft="242.80503144654,134.26415094339" />
+        <NodeLayout
+          Size="177.333333333334,42"
+          Id="Package\SEQC Neue Beleg_Nr\Erfasse Neue Belege"
+          TopLeft="30,18.6729559748433" />
+        <NodeLayout
+          Size="182.666666666667,42"
+          Id="Package\SEQC Neue Beleg_Nr\StartLog Neue Belege"
+          TopLeft="287,19.6729559748433" />
+        <NodeLayout
+          Size="185.333333333334,42"
+          Id="Package\SEQC Neue Beleg_Nr\Stop Log Neue Belege"
+          TopLeft="525,19.6729559748433" />
+        <EdgeLayout
+          Id="Package\SEQC Neue Beleg_Nr.PrecedenceConstraints[Einschränkung]"
+          TopLeft="207,40.1729559748433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80,0"
+              Start="0,0"
+              End="72.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="72.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="28.25,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Neue Beleg_Nr.PrecedenceConstraints[Einschränkung 1]"
+          TopLeft="470,40.6729559748433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55,0"
+              Start="0,0"
+              End="47.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="738,98.6666666666667"
+          Size="738,142"
+          Id="Package\SEQC Neue Beleg_Nr"
+          TopLeft="875.333333333333,565" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\SEQC Neue BUKRS\Erfasse Neue BUKRS"
+          TopLeft="30,18.6729559748433" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\SEQC Neue BUKRS\StartLog Neue BUKRS"
+          TopLeft="287,19.6729559748433" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SEQC Neue BUKRS\Stop Log Neue BUKRS"
+          TopLeft="525,19.6729559748433" />
+        <EdgeLayout
+          Id="Package\SEQC Neue BUKRS.PrecedenceConstraints[Einschränkung]"
+          TopLeft="208,40.1729559748433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,0"
+              Start="0,0"
+              End="71.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="71.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="27.75,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Neue BUKRS.PrecedenceConstraints[Einschränkung 1]"
+          TopLeft="471,40.6729559748433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54,0"
+              Start="0,0"
+              End="46.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="46.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="738,117.333333333334"
+          Size="738,160"
+          Id="Package\SEQC Neue BUKRS"
+          TopLeft="71.3333333333334,625" />
+        <NodeLayout
+          Size="182,44"
+          Id="Package\SEQC Neue Konten\Erfasse Neue Konten"
+          TopLeft="30,18.6729559748433" />
+        <NodeLayout
+          Size="185.333333333334,42"
+          Id="Package\SEQC Neue Konten\StartLog Neue Konten"
+          TopLeft="287,19.6729559748433" />
+        <NodeLayout
+          Size="190.666666666667,42"
+          Id="Package\SEQC Neue Konten\Stop Log Neue Knoten"
+          TopLeft="525,19.6729559748433" />
+        <EdgeLayout
+          Id="Package\SEQC Neue Konten.PrecedenceConstraints[Einschränkung]"
+          TopLeft="212,40.6729559748433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75,0"
+              Start="0,0"
+              End="67.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="67.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="25.75,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Neue Konten.PrecedenceConstraints[Einschränkung 1]"
+          TopLeft="472,40.6729559748433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="53,0"
+              Start="0,0"
+              End="45.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="45.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="738,106.666666666667"
+          Size="738,150"
+          Id="Package\SEQC Neue Konten"
+          TopLeft="68.3333333333334,376" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\SEQC Neue PRCTR\Erfasse Neue PRCTR"
+          TopLeft="30,18.6729559748433" />
+        <NodeLayout
+          Size="182.666666666667,42"
+          Id="Package\SEQC Neue PRCTR\StartLog Neue PRCTR"
+          TopLeft="287,19.6729559748433" />
+        <NodeLayout
+          Size="185.333333333334,42"
+          Id="Package\SEQC Neue PRCTR\Stop Log Neue PRCTR"
+          TopLeft="525,19.6729559748433" />
+        <EdgeLayout
+          Id="Package\SEQC Neue PRCTR.PrecedenceConstraints[Einschränkung]"
+          TopLeft="208,40.1729559748433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,0"
+              Start="0,0"
+              End="71.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="71.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="27.75,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Neue PRCTR.PrecedenceConstraints[Einschränkung 1]"
+          TopLeft="470,40.6729559748433">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55,0"
+              Start="0,0"
+              End="47.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="738,117.333333333334"
+          Size="738,160"
+          Id="Package\SEQC Neue PRCTR"
+          TopLeft="73.3333333333334,819" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\StartLog After Process"
+          TopLeft="34.3333333333333,25" />
+        <NodeLayout
+          Size="134.666666666667,44"
+          Id="Package\StartLog After Process Layer 2"
+          TopLeft="59.3333333333333,130.49056603773" />
+        <NodeLayout
+          Size="134.666666666667,44"
+          Id="Package\StartLog Beteiligungen aktualisieren"
+          TopLeft="62.3333333333333,271" />
+        <NodeLayout
+          Size="134.666666666667,44"
+          Id="Package\Stop Log After Process"
+          TopLeft="712.955974842768,28" />
+        <NodeLayout
+          Size="134.666666666667,44"
+          Id="Package\Stop Log After Process Layer 2"
+          TopLeft="652.163522012578,138" />
+        <NodeLayout
+          Size="134.666666666667,64"
+          Id="Package\Stop Log Beteiligungen aktualisieren"
+          TopLeft="454.974842767295,269.01886792453" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung]"
+          TopLeft="719.663522012578,182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-589.830188679245,89"
+              Start="0,0"
+              End="-589.830188679245,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.5"
+                    Point2="0,44.5"
+                    Point3="-4,44.5" />
+                  <mssgle:LineSegment
+                    End="-585.830188679245,44.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-585.830188679245,44.5"
+                    Point2="-589.830188679245,44.5"
+                    Point3="-589.830188679245,48.5" />
+                  <mssgle:LineSegment
+                    End="-589.830188679245,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 1]"
+          TopLeft="522.474842767295,333.01886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-85.1415094339617,42.98113207547"
+              Start="0,0"
+              End="-85.1415094339617,35.48113207547">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.490566037735" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.490566037735"
+                    Point2="0,21.490566037735"
+                    Point3="-4,21.490566037735" />
+                  <mssgle:LineSegment
+                    End="-81.1415094339617,21.490566037735" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-81.1415094339617,21.490566037735"
+                    Point2="-85.1415094339617,21.490566037735"
+                    Point3="-85.1415094339617,25.490566037735" />
+                  <mssgle:LineSegment
+                    End="-85.1415094339617,35.48113207547" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 2]"
+          TopLeft="438.833333333333,526">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,99"
+              Start="0,0"
+              End="0,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 4]"
+          TopLeft="441.333333333333,785">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 71]"
+          TopLeft="220.333333333333,47.88679245283">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.0188679245277,0"
+              Start="0,0"
+              End="32.5188679245277,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.5188679245277,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 72]"
+          TopLeft="780.455974842768,72">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-653.622641509435,58.49056603773"
+              Start="0,0"
+              End="-653.622641509435,50.99056603773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.245283018865" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.245283018865"
+                    Point2="0,29.245283018865"
+                    Point3="-4,29.245283018865" />
+                  <mssgle:LineSegment
+                    End="-649.622641509435,29.245283018865" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-649.622641509435,29.245283018865"
+                    Point2="-653.622641509435,29.245283018865"
+                    Point3="-653.622641509435,33.245283018865" />
+                  <mssgle:LineSegment
+                    End="-653.622641509435,50.99056603773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 73]"
+          TopLeft="636.238993710691,48.25471698113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76.7169811320771,0"
+              Start="0,0"
+              End="69.2169811320771,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="69.2169811320771,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 74]"
+          TopLeft="395.352201257861,48.14150943396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.8867924528299,0"
+              Start="0,0"
+              End="41.3867924528299,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="41.3867924528299,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 76]"
+          TopLeft="590.238993710691,159.858490566035">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61.9245283018871,0"
+              Start="0,0"
+              End="54.4245283018871,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="54.4245283018871,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 77]"
+          TopLeft="194.163522012578,154.339622641509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.6415094339623,0"
+              Start="0,0"
+              End="41.1415094339623,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="41.1415094339623,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 78]"
+          TopLeft="377.80503144654,157.99056603773">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.4339622641509,0"
+              Start="0,0"
+              End="69.9339622641509,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="69.9339622641509,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 79]"
+          TopLeft="197.163522012578,295.660377358487">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.8301886792453,0"
+              Start="0,0"
+              End="33.3301886792453,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="33.3301886792453,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 80]"
+          TopLeft="372.993710691823,299.70754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="81.981132075472,0"
+              Start="0,0"
+              End="74.481132075472,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="74.481132075472,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/3/2014 10:59:45 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DBP331003"
+  DTS:CreatorName="SYSTEM\u088524"
+  DTS:DTSID="{358CFDFD-FF0C-467B-A0B3-BAC7A9D088ED}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="IC_Initialize"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{DBAC7B64-437A-43B1-A6B8-649ADA44542F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clear sysdtslog90 rows older then 2 months"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{1516e443-403c-4fa5-87ec-f94e1cf81c22}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear sysdtslog90 rows older then 2 months"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DF4755D8-914B-450A-A943-213A080FF7A7}"
+          SQLTask:SqlStatementSource="Delete from sysdtslog90&#xA;where endtime &lt; DateAdd(m, -2, GetDate())" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Log Clear sysdtslog90"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{6733dcab-f9b4-4f40-b670-64ae4013ad74}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Log Clear sysdtslog90"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StartLog 'Clear sysdtslog90'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stop Log Clear sysdtslog90"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{f4145568-0bb7-49b5-9e69-c595187d73b7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stop Log Clear sysdtslog90"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StopLog 'Clear sysdtslog90', 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung]"
+      DTS:CreationName=""
+      DTS:DTSID="{dc52a9ec-f4c6-4ed5-89db-1e7cb90ef49d}"
+      DTS:From="Package\Start Log Clear sysdtslog90"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung"
+      DTS:To="Package\Clear sysdtslog90 rows older then 2 months" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C3870A3C-C60C-4298-BAE2-9ADB74FD2D76}"
+      DTS:From="Package\Clear sysdtslog90 rows older then 2 months"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 1"
+      DTS:To="Package\Stop Log Clear sysdtslog90" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Dieser CDATA-Abschnitt enthält die Layoutinformationen des Pakets, z.B. Informationen wie X-/Y-Koordinaten, Breite und Höhe.-->
+<!--Wenn Sie diesen Abschnitt manuell ändern und Ihnen ein Fehler unterläuft, können Sie ihn löschen. -->
+<!--Das Paket kann zwar weiterhin normal geladen werden, aber frühere Layoutinformationen gehen verloren, und die Elemente auf der Entwurfsoberfläche werden vom Designer automatisch neu angeordnet.-->
+<Objects
+  Version="8">
+  <!--Jeder darunter liegende Knoten enthält Eigenschaften, die sich nicht auf das Laufzeitverhalten auswirken.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="339,45"
+          Id="Package\Clear sysdtslog90 rows older then 2 months"
+          TopLeft="208.735849056604,143.433962264151" />
+        <NodeLayout
+          Size="244,44"
+          Id="Package\Start Log Clear sysdtslog90"
+          TopLeft="213,47.641509433963" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Stop Log Clear sysdtslog90"
+          TopLeft="216.924528301887,292.566037735849" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung]"
+          TopLeft="335,91.641509433963">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43.235849056604,51.792452830188"
+              Start="0,0"
+              End="43.235849056604,44.292452830188">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.896226415094" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.896226415094"
+                    Point2="0,25.896226415094"
+                    Point3="4,25.896226415094" />
+                  <mssgle:LineSegment
+                    End="39.235849056604,25.896226415094" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.235849056604,25.896226415094"
+                    Point2="43.235849056604,25.896226415094"
+                    Point3="43.235849056604,29.896226415094" />
+                  <mssgle:LineSegment
+                    End="43.235849056604,44.292452830188" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 1]"
+          TopLeft="378.235849056604,188.433962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-57.311320754717,104.132075471698"
+              Start="0,0"
+              End="-57.311320754717,96.632075471698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.066037735849" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.066037735849"
+                    Point2="0,52.066037735849"
+                    Point3="-4,52.066037735849" />
+                  <mssgle:LineSegment
+                    End="-53.311320754717,52.066037735849" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-53.311320754717,52.066037735849"
+                    Point2="-57.311320754717,52.066037735849"
+                    Point3="-57.311320754717,56.066037735849" />
+                  <mssgle:LineSegment
+                    End="-57.311320754717,96.632075471698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/3/2014 7:50:40 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DBP331003"
+  DTS:CreatorName="SYSTEM\u088524"
+  DTS:DTSID="{9ABAFF64-A55D-409A-81DD-C7DE0ACEDBE4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="IC_TransformLoad"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{32B35805-B2AF-41BC-998D-C9B6A4BF66DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Process OLAP-DB"
+      DTS:CreationName="Microsoft.DTSProcessingTask"
+      DTS:Description="Analysis Services-Verarbeitungstask"
+      DTS:Disabled="True"
+      DTS:DTSID="{2e488329-6d0c-4096-a6a8-22869c3d97f9}"
+      DTS:ExecutableType="Microsoft.DTSProcessingTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process OLAP-DB"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ASProcessingData
+          ConnectionName="OLAP_Target"
+          ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;ImmoControlling_OLAP&lt;/DatabaseID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessFull&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Log Process OLAP-DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{084246e6-740f-4999-a1eb-2bb2263a14ba}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Log Process OLAP-DB"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StartLog 'Process OLAP-DB'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stop Log Process OLAP-DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{bcfbb3bf-9f84-4ceb-9ee2-75a692d70da4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stop Log Process OLAP-DB"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StopLog 'Process OLAP-DB', 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transform_All"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{469052d9-747e-4be9-b00f-ab186898ac73}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transform_All"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_Transform_All" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{74b013d2-26e0-4f73-8fc2-52990fc2c2e8}"
+      DTS:From="Package\Process OLAP-DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 10"
+      DTS:To="Package\Stop Log Process OLAP-DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{13705e33-866f-40f9-8145-d0384576e2d5}"
+      DTS:From="Package\Transform_All"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 8"
+      DTS:To="Package\Start Log Process OLAP-DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{11a0c2f8-4555-4006-880d-ab66f1ec6ed3}"
+      DTS:From="Package\Start Log Process OLAP-DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 9"
+      DTS:To="Package\Process OLAP-DB" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Dieser CDATA-Abschnitt enthält die Layoutinformationen des Pakets, z.B. Informationen wie X-/Y-Koordinaten, Breite und Höhe.-->
+<!--Wenn Sie diesen Abschnitt manuell ändern und Ihnen ein Fehler unterläuft, können Sie ihn löschen. -->
+<!--Das Paket kann zwar weiterhin normal geladen werden, aber frühere Layoutinformationen gehen verloren, und die Elemente auf der Entwurfsoberfläche werden vom Designer automatisch neu angeordnet.-->
+<Objects
+  Version="8">
+  <!--Jeder darunter liegende Knoten enthält Eigenschaften, die sich nicht auf das Laufzeitverhalten auswirken.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Process OLAP-DB"
+          TopLeft="269,330.60377358491" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Start Log Process OLAP-DB"
+          TopLeft="170,235.49056603774" />
+        <NodeLayout
+          Size="177,44"
+          Id="Package\Stop Log Process OLAP-DB"
+          TopLeft="186.377358490566,432.37735849057" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Transform_All"
+          TopLeft="175.924528301887,154" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 10]"
+          TopLeft="337,374.60377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-62.1226415094341,57.7735849056598"
+              Start="0,0"
+              End="-62.1226415094341,50.2735849056598">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.8867924528299" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.8867924528299"
+                    Point2="0,28.8867924528299"
+                    Point3="-4,28.8867924528299" />
+                  <mssgle:LineSegment
+                    End="-58.1226415094341,28.8867924528299" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-58.1226415094341,28.8867924528299"
+                    Point2="-62.1226415094341,28.8867924528299"
+                    Point3="-62.1226415094341,32.8867924528299" />
+                  <mssgle:LineSegment
+                    End="-62.1226415094341,50.2735849056598" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 8]"
+          TopLeft="243.924528301887,198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.075471698113,37.49056603774"
+              Start="0,0"
+              End="15.075471698113,29.99056603774">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.74528301887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.74528301887"
+                    Point2="0,18.74528301887"
+                    Point3="4,18.74528301887" />
+                  <mssgle:LineSegment
+                    End="11.075471698113,18.74528301887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.075471698113,18.74528301887"
+                    Point2="15.075471698113,18.74528301887"
+                    Point3="15.075471698113,22.74528301887" />
+                  <mssgle:LineSegment
+                    End="15.075471698113,29.99056603774" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 9]"
+          TopLeft="259,277.49056603774">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="78,53.1132075471701"
+              Start="0,0"
+              End="78,45.6132075471701">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5566037735851" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.5566037735851"
+                    Point2="0,26.5566037735851"
+                    Point3="4,26.5566037735851" />
+                  <mssgle:LineSegment
+                    End="74,26.5566037735851" />
+                  <mssgle:CubicBezierSegment
+                    Point1="74,26.5566037735851"
+                    Point2="78,26.5566037735851"
+                    Point3="78,30.5566037735851" />
+                  <mssgle:LineSegment
+                    End="78,45.6132075471701" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

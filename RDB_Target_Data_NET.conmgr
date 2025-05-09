@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="RDB_Target_Data_NET"
+  DTS:DTSID="{3EA76788-EA21-4665-90BE-0494DB42D4C7}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::RDB_Target_Data_ConnectionString_NET]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=dbp332001;Initial Catalog=ImmoControlling_RDB_Data;Integrated Security=True;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

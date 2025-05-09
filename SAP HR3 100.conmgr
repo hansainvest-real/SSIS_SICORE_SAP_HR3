@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SAP HR3 100"
+  DTS:DTSID="{17218D3C-97E6-4738-B8E7-0F90446341C2}"
+  DTS:CreationName="XTRACT">
+  <DTS:ObjectData>
+    <XtractConnectionManager>
+      <AppServer>10.194.48.29</AppServer>
+      <Client>100</Client>
+      <User>DEVELOPBI</User>
+      <Password
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANB1GzB5oXUK2+e6cTgVr5gAAAAACAAAAAAADZgAAwAAAABAAAAAJnsAs2SztAxE07s5fcdCvAAAAAASAAACgAAAAEAAAABhJccDi1QdaFOnGAA8qJjAwAAAA5wGNLWnNeVgPrU8UlJGX6biFqjRk8oenmOziqlX65+di2ONvZttm2zE3kLslkoFnFAAAAO6x8KlNMg7NXE31q+Co5bx37YTF</Password>
+      <Language>DE</Language>
+    </XtractConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,2337 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/12/2017 4:04:10 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DBP331003"
+  DTS:CreatorName="SYSTEM\U103290"
+  DTS:DTSID="{CEEFA770-FD42-42E4-A8E5-302F4A2CC156}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="IC_DayLoad_COBK"
+  DTS:PackageType="5"
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{E85035A0-7924-47DF-A46F-150C85F50B99}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19E263E6-04BD-4524-9E0B-E8D8F6878493}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TDatum">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{41F6F79F-A32B-438F-AC7A-BEF63404CE77}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Today_min14">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delta_Load_nach Datum"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1C40C0FC-1852-4D79-A951-304101CA3D8C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delta_Load_nach Datum"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Delta_Load_nach Datum\COBK"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="This source component extracts table data from the SAP system"
+              name="COBK">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">XtractIS.XtractSourceTable</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates, whether DT_WSTR / DT_NTEXT  is used for string columns (true) or DT_STR / DT_TEXT is used (false)"
+                  name="UsesWideStrings">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the maximum number of rows to be extracted (0 is unlimited)"
+                  expressionType="Notify"
+                  name="MaxRows">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the package size for large data extraction (0 is unlimited)"
+                  expressionType="Notify"
+                  name="PackageSize">100000</property>
+                <property
+                  dataType="System.String"
+                  description="Specify WHERE clause for extraction"
+                  expressionType="Notify"
+                  name="WhereClause">CPUDT &gt;= @Today_min14</property>
+                <property
+                  dataType="System.String"
+                  description="Name of the SAP function module for reading tables"
+                  expressionType="Notify"
+                  name="CustomFunctionName">/SAPDS/RFC_STREAM_READ_TABLE</property>
+                <property
+                  dataType="System.Null"
+                  description="Order By clause"
+                  name="OrderBy" />
+                <property
+                  dataType="System.String"
+                  description="Internal definition, please use the editor"
+                  name="InternalDefinition"
+                  typeConverter="NOTBROWSABLE">{
+    "functionName": "/SAPDS/RFC_STREAM_READ_TABLE",
+    "rowsPerPackage": 100000,
+    "whereClause": "CPUDT &gt;= @Today_min14",
+    "runInBackgroundJob": false,
+    "backgroundJobTimeout": 180,
+    "tables": 
+    [
+        {
+            "name": "COBK",
+            "isView": false,
+            "fields": 
+            [
+                {
+                    "name": "MANDT",
+                    "description": "Mandant",
+                    "abapType": "CharacterString",
+                    "length": 3,
+                    "isPrimaryKey": true,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "KOKRS",
+                    "description": "Kostenrechnungskreis",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isPrimaryKey": true,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "BELNR",
+                    "description": "Belegnummer",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isPrimaryKey": true,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "GJAHR",
+                    "description": "Geschäftsjahr",
+                    "abapType": "NumericCharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "GJAHR",
+                    "isClientField": false
+                },
+                {
+                    "name": "VERSN",
+                    "description": "Version im CO-Belegkopf",
+                    "abapType": "CharacterString",
+                    "length": 3,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "VRGNG",
+                    "description": "Vorgang CO",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "TIMESTMP",
+                    "description": "Hinzufügezeitpunkt in Greenwich Meantime",
+                    "abapType": "PackedNumber",
+                    "length": 16,
+                    "isSelected": true,
+                    "formattedLength": 21,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "PERAB",
+                    "description": "Ab-Periode",
+                    "abapType": "NumericCharacterString",
+                    "length": 3,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "PERBI",
+                    "description": "Bis-Periode",
+                    "abapType": "NumericCharacterString",
+                    "length": 3,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "BLDAT",
+                    "description": "Belegdatum",
+                    "abapType": "Date",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "BUDAT",
+                    "description": "Buchungsdatum",
+                    "abapType": "Date",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "CPUDT",
+                    "description": "Erfassungsdatum des Beleges",
+                    "abapType": "Date",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "USNAM",
+                    "description": "Benutzername",
+                    "abapType": "CharacterString",
+                    "length": 12,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "BLTXT",
+                    "description": "Belegkopf-Text",
+                    "abapType": "CharacterString",
+                    "length": 50,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "STFLG",
+                    "description": "Kennzeichen 'Beleg ist Stornobeleg'",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "STOKZ",
+                    "description": "Kennzeichen 'Beleg wurde storniert'",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "REFBT",
+                    "description": "Belegtyp des Referenzbeleges",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "REFBN",
+                    "description": "Belegnummer des Referenzbeleges",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "indexed": "Ascending",
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "REFBK",
+                    "description": "Buchungskreis des FI-Belegs",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "REFGJ",
+                    "description": "Geschäftsjahr des Referenzbeleges",
+                    "abapType": "NumericCharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "GJAHR",
+                    "isClientField": false
+                },
+                {
+                    "name": "BLART",
+                    "description": "Belegart des FI-Referenzbelegs",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "LDGRP",
+                    "description": "Ledger-Gruppe",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "ORGVG",
+                    "description": "Orginal-Vorgang CO",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "SUMBZ",
+                    "description": "Anzahl der Buchungszeilen zu lokalen Objekten",
+                    "abapType": "NumericCharacterString",
+                    "length": 3,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "DELBZ",
+                    "description": "Anzahl bereits gelöschter Buchungszeilen",
+                    "abapType": "NumericCharacterString",
+                    "length": 3,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "WSDAT",
+                    "description": "Wertstellungsdatum für Währungsumrechnung",
+                    "abapType": "Date",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "KURST",
+                    "description": "Kurstyp",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "VARNR",
+                    "description": "Schnellerfassung CO-Istbuchungen: Variante",
+                    "abapType": "CharacterString",
+                    "length": 5,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "KWAER",
+                    "description": "Kostenrechnungskreiswährung",
+                    "abapType": "CharacterString",
+                    "length": 5,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "CTYP1",
+                    "description": "Währungstyp 1 im CO-Standardledger",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "CTYP2",
+                    "description": "Währungstyp 2 im CO-Standardledger",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "CTYP3",
+                    "description": "Währungstyp 3 im CO-Standardledger",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "CTYP4",
+                    "description": "Währungstyp 4 im CO-Standardledger",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "AWTYP",
+                    "description": "Referenzvorgang",
+                    "abapType": "CharacterString",
+                    "length": 5,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "AWORG",
+                    "description": "Referenzorganisationseinheiten",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "LOGSYSTEM",
+                    "description": "Logisches System",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "CPUTM",
+                    "description": "Uhrzeit der Erfassung",
+                    "abapType": "Time",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "ALEBZ",
+                    "description": "Anz. der Buchungsz., die an fremde Systeme verschickt wurden",
+                    "abapType": "NumericCharacterString",
+                    "length": 3,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "ALEBN",
+                    "description": "Bei ALE: CO-Belegnummer im erzeugenden System",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "AWSYS",
+                    "description": "Logisches System des Ursprungsbeleges",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "AWREF_REV",
+                    "description": "Storno: Referenzbelegnummer des zu stornierenden Beleges",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "AWORG_REV",
+                    "description": "Storno: Referenzorganisationen des zu stornierenden Beleges",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "AWKEY",
+                    "description": "Referenzschlüssel",
+                    "abapType": "CharacterString",
+                    "length": 20,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "VALDT",
+                    "description": "Spezielles Bewertungsdatum für Kostenrechnung",
+                    "abapType": "Date",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "KOKRS_SENDER",
+                    "description": "Kostenrechnungskreis im Sendersystem",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "BELNR_SENDER",
+                    "description": "Kostenrechnungsbelegnummer des CO-Belegs in Sendersystem",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "indexed": "Ascending",
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "LOGSYSTEM_SENDER",
+                    "description": "Logisches System des Senders",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "REPROCESSING_STATUS_CODE",
+                    "description": "Nachbearbeitungsstatuscode",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "conversionExit": "",
+                    "isClientField": false
+                }
+            ]
+        }
+    ],
+    "complexRuntimeParameters": {
+        "scalar": {
+            "User::TDatum": {
+                "type": "String"
+            },
+            "User::Today_min14": {
+                "type": "Number"
+            },
+            "$Project::OLAP_Target_ConnectionString": {
+                "type": "String"
+            },
+            "$Project::RDB_Target_Data_ConnectionString": {
+                "type": "String"
+            },
+            "$Project::RDB_Target_Import_ConnectionString": {
+                "type": "String"
+            },
+            "$Project::RDB_Target_Data_ConnectionString_NET": {
+                "type": "String"
+            }
+        }
+    },
+    "whereSequence": [
+    ]
+}</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable or disable legacy date conversion"
+                  name="UseLegacyDateConversion">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable or disable conversion of SAP dates"
+                  expressionType="Notify"
+                  name="ConvertsDates">false</property>
+                <property
+                  dataType="System.String"
+                  description="Replacement value for 0000XXXX dates (yyyy-MM-dd or NULL)"
+                  expressionType="Notify"
+                  name="MinDateReplacement"
+                  typeConverter="XtractIS.DatePropertyTypeConverter, XtractIS.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f12149c68f4ec1b7">1970-01-01</property>
+                <property
+                  dataType="System.String"
+                  description="Replacement value for 9999XXXX dates (yyyy-MM-dd or NULL)"
+                  expressionType="Notify"
+                  name="MaxDateReplacement"
+                  typeConverter="XtractIS.DatePropertyTypeConverter, XtractIS.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f12149c68f4ec1b7">2099-12-31</property>
+                <property
+                  dataType="System.String"
+                  description="Replacement for invalid dates (yyyy-MM-dd or NULL)"
+                  expressionType="Notify"
+                  name="InvalidDateReplacement"
+                  typeConverter="XtractIS.DatePropertyTypeConverter, XtractIS.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f12149c68f4ec1b7">1970-01-02</property>
+                <property
+                  dataType="System.Int32"
+                  description="Style of result column names"
+                  name="ColumnNameStyle"
+                  typeConverter="XtractIS.ColumnNameStyleConverter, XtractIS.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f12149c68f4ec1b7">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Run the extraction in a background job on SAP"
+                  expressionType="Notify"
+                  name="ExtractInBackgroundJob">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Delta_Load_nach Datum\COBK.Connections[Xtract SAP Connection]"
+                  connectionManagerID="{182C86A9-1E27-47C2-8A19-0BC115470F1B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SAP HR2 300]"
+                  description="Xtract SAP Connection"
+                  name="Xtract SAP Connection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput]"
+                  name="XtractOutput">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[MANDT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Mandant"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[MANDT]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[MANDT]"
+                      name="MANDT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[KOKRS]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kostenrechnungskreis"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[KOKRS]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[KOKRS]"
+                      name="KOKRS" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BELNR]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegnummer"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BELNR]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BELNR]"
+                      name="BELNR" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[GJAHR]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Geschäftsjahr"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[GJAHR]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[GJAHR]"
+                      name="GJAHR" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VERSN]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Version im CO-Belegkopf"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[VERSN]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VERSN]"
+                      name="VERSN" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VRGNG]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Vorgang CO"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[VRGNG]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VRGNG]"
+                      name="VRGNG" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[TIMESTMP]"
+                      dataType="numeric"
+                      description="Hinzufügezeitpunkt in Greenwich Meantime"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[TIMESTMP]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[TIMESTMP]"
+                      name="TIMESTMP"
+                      precision="16" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[PERAB]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Ab-Periode"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[PERAB]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[PERAB]"
+                      name="PERAB" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[PERBI]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Bis-Periode"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[PERBI]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[PERBI]"
+                      name="PERBI" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BLDAT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegdatum"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BLDAT]"
+                      length="8"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BLDAT]"
+                      name="BLDAT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BUDAT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Buchungsdatum"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BUDAT]"
+                      length="8"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BUDAT]"
+                      name="BUDAT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CPUDT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Erfassungsdatum des Beleges"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CPUDT]"
+                      length="8"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CPUDT]"
+                      name="CPUDT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[USNAM]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Benutzername"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[USNAM]"
+                      length="12"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[USNAM]"
+                      name="USNAM" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BLTXT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegkopf-Text"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BLTXT]"
+                      length="50"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BLTXT]"
+                      name="BLTXT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[STFLG]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kennzeichen 'Beleg ist Stornobeleg'"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[STFLG]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[STFLG]"
+                      name="STFLG" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[STOKZ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kennzeichen 'Beleg wurde storniert'"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[STOKZ]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[STOKZ]"
+                      name="STOKZ" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFBT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegtyp des Referenzbeleges"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[REFBT]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFBT]"
+                      name="REFBT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFBN]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegnummer des Referenzbeleges"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[REFBN]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFBN]"
+                      name="REFBN" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFBK]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Buchungskreis des FI-Belegs"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[REFBK]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFBK]"
+                      name="REFBK" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFGJ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Geschäftsjahr des Referenzbeleges"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[REFGJ]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFGJ]"
+                      name="REFGJ" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BLART]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegart des FI-Referenzbelegs"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BLART]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BLART]"
+                      name="BLART" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[ORGVG]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Orginal-Vorgang CO"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[ORGVG]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[ORGVG]"
+                      name="ORGVG" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[SUMBZ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Anzahl der Buchungszeilen zu lokalen Objekten"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[SUMBZ]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[SUMBZ]"
+                      name="SUMBZ" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[DELBZ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Anzahl bereits gelöschter Buchungszeilen"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[DELBZ]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[DELBZ]"
+                      name="DELBZ" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[WSDAT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Wertstellungsdatum für Währungsumrechnung"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[WSDAT]"
+                      length="8"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[WSDAT]"
+                      name="WSDAT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[KURST]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kurstyp"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[KURST]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[KURST]"
+                      name="KURST" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VARNR]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Schnellerfassung CO-Istbuchungen: Variante"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[VARNR]"
+                      length="5"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VARNR]"
+                      name="VARNR" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[KWAER]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kostenrechnungskreiswährung"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[KWAER]"
+                      length="5"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[KWAER]"
+                      name="KWAER" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP1]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Währungstyp 1 im CO-Standardledger"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CTYP1]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP1]"
+                      name="CTYP1" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP2]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Währungstyp 2 im CO-Standardledger"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CTYP2]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP2]"
+                      name="CTYP2" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP3]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Währungstyp 3 im CO-Standardledger"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CTYP3]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP3]"
+                      name="CTYP3" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP4]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Währungstyp 4 im CO-Standardledger"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CTYP4]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP4]"
+                      name="CTYP4" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWTYP]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Referenzvorgang"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWTYP]"
+                      length="5"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWTYP]"
+                      name="AWTYP" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWORG]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Referenzorganisationseinheiten"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWORG]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWORG]"
+                      name="AWORG" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[LOGSYSTEM]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Logisches System"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[LOGSYSTEM]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[LOGSYSTEM]"
+                      name="LOGSYSTEM" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CPUTM]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Uhrzeit der Erfassung"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CPUTM]"
+                      length="6"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CPUTM]"
+                      name="CPUTM" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[ALEBZ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Anz. der Buchungsz., die an fremde Systeme verschickt wurden"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[ALEBZ]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[ALEBZ]"
+                      name="ALEBZ" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[ALEBN]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Bei ALE: CO-Belegnummer im erzeugenden System"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[ALEBN]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[ALEBN]"
+                      name="ALEBN" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWSYS]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Logisches System des Ursprungsbeleges"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWSYS]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWSYS]"
+                      name="AWSYS" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWREF_REV]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Storno: Referenzbelegnummer des zu stornierenden Beleges"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWREF_REV]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWREF_REV]"
+                      name="AWREF_REV" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWORG_REV]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Storno: Referenzorganisationen des zu stornierenden Beleges"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWORG_REV]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWORG_REV]"
+                      name="AWORG_REV" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VALDT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Spezielles Bewertungsdatum für Kostenrechnung"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[VALDT]"
+                      length="8"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VALDT]"
+                      name="VALDT" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[MANDT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Mandant"
+                      length="3"
+                      name="MANDT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[KOKRS]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kostenrechnungskreis"
+                      length="4"
+                      name="KOKRS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BELNR]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegnummer"
+                      length="10"
+                      name="BELNR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[GJAHR]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Geschäftsjahr"
+                      length="4"
+                      name="GJAHR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[VERSN]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Version im CO-Belegkopf"
+                      length="3"
+                      name="VERSN" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[VRGNG]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Vorgang CO"
+                      length="4"
+                      name="VRGNG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[TIMESTMP]"
+                      dataType="numeric"
+                      description="Hinzufügezeitpunkt in Greenwich Meantime"
+                      name="TIMESTMP"
+                      precision="16" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[PERAB]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Ab-Periode"
+                      length="3"
+                      name="PERAB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[PERBI]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Bis-Periode"
+                      length="3"
+                      name="PERBI" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BLDAT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegdatum"
+                      length="8"
+                      name="BLDAT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BUDAT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Buchungsdatum"
+                      length="8"
+                      name="BUDAT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CPUDT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Erfassungsdatum des Beleges"
+                      length="8"
+                      name="CPUDT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[USNAM]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Benutzername"
+                      length="12"
+                      name="USNAM" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BLTXT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegkopf-Text"
+                      length="50"
+                      name="BLTXT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[STFLG]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kennzeichen 'Beleg ist Stornobeleg'"
+                      length="1"
+                      name="STFLG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[STOKZ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kennzeichen 'Beleg wurde storniert'"
+                      length="1"
+                      name="STOKZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[REFBT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegtyp des Referenzbeleges"
+                      length="1"
+                      name="REFBT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[REFBN]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegnummer des Referenzbeleges"
+                      length="10"
+                      name="REFBN" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[REFBK]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Buchungskreis des FI-Belegs"
+                      length="4"
+                      name="REFBK" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[REFGJ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Geschäftsjahr des Referenzbeleges"
+                      length="4"
+                      name="REFGJ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[BLART]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Belegart des FI-Referenzbelegs"
+                      length="2"
+                      name="BLART" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[ORGVG]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Orginal-Vorgang CO"
+                      length="4"
+                      name="ORGVG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[SUMBZ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Anzahl der Buchungszeilen zu lokalen Objekten"
+                      length="3"
+                      name="SUMBZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[DELBZ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Anzahl bereits gelöschter Buchungszeilen"
+                      length="3"
+                      name="DELBZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[WSDAT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Wertstellungsdatum für Währungsumrechnung"
+                      length="8"
+                      name="WSDAT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[KURST]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kurstyp"
+                      length="4"
+                      name="KURST" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[VARNR]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Schnellerfassung CO-Istbuchungen: Variante"
+                      length="5"
+                      name="VARNR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[KWAER]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Kostenrechnungskreiswährung"
+                      length="5"
+                      name="KWAER" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CTYP1]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Währungstyp 1 im CO-Standardledger"
+                      length="2"
+                      name="CTYP1" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CTYP2]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Währungstyp 2 im CO-Standardledger"
+                      length="2"
+                      name="CTYP2" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CTYP3]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Währungstyp 3 im CO-Standardledger"
+                      length="2"
+                      name="CTYP3" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CTYP4]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Währungstyp 4 im CO-Standardledger"
+                      length="2"
+                      name="CTYP4" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWTYP]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Referenzvorgang"
+                      length="5"
+                      name="AWTYP" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWORG]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Referenzorganisationseinheiten"
+                      length="10"
+                      name="AWORG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[LOGSYSTEM]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Logisches System"
+                      length="10"
+                      name="LOGSYSTEM" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[CPUTM]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Uhrzeit der Erfassung"
+                      length="6"
+                      name="CPUTM" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[ALEBZ]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Anz. der Buchungsz., die an fremde Systeme verschickt wurden"
+                      length="3"
+                      name="ALEBZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[ALEBN]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Bei ALE: CO-Belegnummer im erzeugenden System"
+                      length="10"
+                      name="ALEBN" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWSYS]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Logisches System des Ursprungsbeleges"
+                      length="10"
+                      name="AWSYS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWREF_REV]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Storno: Referenzbelegnummer des zu stornierenden Beleges"
+                      length="10"
+                      name="AWREF_REV" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[AWORG_REV]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Storno: Referenzorganisationen des zu stornierenden Beleges"
+                      length="10"
+                      name="AWORG_REV" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].ExternalColumns[VALDT]"
+                      codePage="1252"
+                      dataType="str"
+                      description="Spezielles Bewertungsdatum für Kostenrechnung"
+                      length="8"
+                      name="VALDT" />
+                  </externalMetadataColumns>
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB-Ziel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;4"
+              description="OLE DB-Ziel"
+              name="T_Import_FACT_COBK_DayLoad"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Die Anzahl der Sekunden für das Timeout eines Befehls. Der Wert &quot;0&quot; zeigt einen unendlichen Timeoutwert an."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Gibt den Namen des zum Öffnen eines Rowsets verwendeten Datenbankobjekts an."
+                  name="OpenRowset">[T_Import_FACT_COBK_DayLoad]</property>
+                <property
+                  dataType="System.String"
+                  description="Gibt die Variable an, die den Namen des zum Öffnen eines Rowsets verwendeten Datenbankobjekts enthält."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Der auszuführende SQL-Befehl."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Gibt die zu verwendende Spaltencodepage an, wenn keine Codepageinformationen von der Datenquelle verfügbar sind."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Erzwingt die Verwendung des DefaultCodePage-Eigenschaftswerts beim Beschreiben von Zeichendaten."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Gibt den zum Zugreifen auf die Datenbank verwendeten Modus an."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Zeigt an, ob die für Identitätsspalten übergebenen Werte zum Ziel kopiert werden. Bei &quot;False&quot; werden die Werte für Identitätsspalten am Ziel automatisch generiert. Trifft nur zu, wenn die Option &quot;Schnelles Laden&quot; aktiviert ist."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Zeigt an, ob für Spalten, die NULL enthalten, NULL am Ziel eingefügt wird. Bei &quot;False&quot; werden für Spalten, die NULL enthalten, am Ziel die Standardwerte eingefügt. Trifft nur zu, wenn die Option &quot;Schnelles Laden&quot; aktiviert ist."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Gibt die für die Option &quot;Schnelles Laden&quot; zu verwendenden Optionen an. Trifft nur zu, wenn die Option &quot;Schnelles Laden&quot; aktiviert ist."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Gibt an, wann beim Einfügen von Daten Commits ausgegeben werden. Der Wert &quot;0&quot; gibt an, dass ein Commit am Ende des Einfügens von Daten ausgegeben wird. Trifft nur zu, wenn die Option &quot;Schnelles Laden&quot; aktiviert ist."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Connections[OleDbConnection]"
+                  connectionManagerID="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[RDB_Target_Data]"
+                  description="Die für den Zugriff auf die Datenbank verwendete OLE DB-Laufzeitverbindung."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels]"
+                  errorOrTruncationOperation="Einfügen"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Eingabe des OLE DB-Ziels">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[MANDT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="MANDT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MANDT]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[MANDT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[KOKRS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="KOKRS"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[KOKRS]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[KOKRS]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[BELNR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="BELNR"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BELNR]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BELNR]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[GJAHR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="GJAHR"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[GJAHR]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[GJAHR]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[VERSN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="VERSN"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VERSN]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VERSN]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[VRGNG]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="VRGNG"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VRGNG]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VRGNG]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[TIMESTMP]"
+                      cachedDataType="numeric"
+                      cachedName="TIMESTMP"
+                      cachedPrecision="16"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[TIMESTMP]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[TIMESTMP]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[PERAB]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="PERAB"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[PERAB]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[PERAB]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[PERBI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="PERBI"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[PERBI]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[PERBI]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[BLDAT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="BLDAT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BLDAT]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BLDAT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[BUDAT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="BUDAT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BUDAT]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BUDAT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[CPUDT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="CPUDT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CPUDT]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CPUDT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[USNAM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="USNAM"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[USNAM]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[USNAM]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[BLTXT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="BLTXT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BLTXT]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BLTXT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[STFLG]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="STFLG"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[STFLG]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[STFLG]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[STOKZ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="STOKZ"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[STOKZ]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[STOKZ]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[REFBT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="REFBT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[REFBT]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFBT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[REFBN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="REFBN"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[REFBN]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFBN]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[REFBK]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="REFBK"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[REFBK]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFBK]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[REFGJ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="REFGJ"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[REFGJ]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[REFGJ]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[BLART]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="BLART"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BLART]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[BLART]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[ORGVG]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="ORGVG"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ORGVG]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[ORGVG]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[SUMBZ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="SUMBZ"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[SUMBZ]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[SUMBZ]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[DELBZ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="DELBZ"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[DELBZ]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[DELBZ]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[WSDAT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="WSDAT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[WSDAT]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[WSDAT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[KURST]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="KURST"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[KURST]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[KURST]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[VARNR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="VARNR"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VARNR]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VARNR]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[KWAER]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="KWAER"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[KWAER]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[KWAER]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[CTYP1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="CTYP1"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CTYP1]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP1]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[CTYP2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="CTYP2"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CTYP2]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP2]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[CTYP3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="CTYP3"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CTYP3]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP3]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[CTYP4]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="CTYP4"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CTYP4]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CTYP4]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[AWTYP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="AWTYP"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWTYP]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWTYP]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[AWORG]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="AWORG"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWORG]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWORG]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[LOGSYSTEM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="LOGSYSTEM"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[LOGSYSTEM]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[LOGSYSTEM]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[CPUTM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="CPUTM"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CPUTM]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[CPUTM]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[ALEBZ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="ALEBZ"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ALEBZ]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[ALEBZ]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[ALEBN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="ALEBN"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ALEBN]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[ALEBN]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[AWSYS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="AWSYS"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWSYS]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWSYS]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[AWREF_REV]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="AWREF_REV"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWREF_REV]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWREF_REV]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[AWORG_REV]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="AWORG_REV"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWORG_REV]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[AWORG_REV]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].Columns[VALDT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="VALDT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VALDT]"
+                      lineageId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput].Columns[VALDT]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MANDT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="MANDT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[KOKRS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="KOKRS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BELNR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BELNR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[GJAHR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="GJAHR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VERSN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="VERSN" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VRGNG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="VRGNG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[TIMESTMP]"
+                      dataType="numeric"
+                      name="TIMESTMP"
+                      precision="16" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[PERAB]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="PERAB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[PERBI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="PERBI" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BLDAT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="BLDAT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BUDAT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="BUDAT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CPUDT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="CPUDT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[USNAM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="USNAM" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BLTXT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BLTXT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[STFLG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="STFLG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[STOKZ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="STOKZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[REFBT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="REFBT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[REFBN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="REFBN" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[REFBK]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="REFBK" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[REFGJ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="REFGJ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BLART]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="BLART" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ORGVG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="ORGVG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[SUMBZ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="SUMBZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[DELBZ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="DELBZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[WSDAT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="WSDAT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[KURST]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="KURST" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VARNR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="VARNR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[KWAER]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="KWAER" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CTYP1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="CTYP1" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CTYP2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="CTYP2" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CTYP3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="CTYP3" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CTYP4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="CTYP4" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWTYP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="AWTYP" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWORG]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="AWORG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[LOGSYSTEM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="LOGSYSTEM" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[CPUTM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="CPUTM" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ALEBZ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ALEBZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ALEBN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="ALEBN" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWSYS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="AWSYS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWREF_REV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="AWREF_REV" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[AWORG_REV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="AWORG_REV" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VALDT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="VALDT" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Outputs[Fehlerausgabe des OLE DB-Ziels]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Fehlerausgabe des OLE DB-Ziels"
+                  synchronousInputId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Outputs[Fehlerausgabe des OLE DB-Ziels].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Outputs[Fehlerausgabe des OLE DB-Ziels].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Outputs[Fehlerausgabe des OLE DB-Ziels].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Outputs[Fehlerausgabe des OLE DB-Ziels].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Delta_Load_nach Datum.Paths[XtractOutput]"
+              endId="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad.Inputs[Eingabe des OLE DB-Ziels]"
+              name="XtractOutput"
+              startId="Package\Delta_Load_nach Datum\COBK.Outputs[XtractOutput]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Today-14"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{35DE5C3C-CC62-45DB-9C2D-E59F88499AE0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Today-14"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DF4755D8-914B-450A-A943-213A080FF7A7}"
+          SQLTask:SqlStatementSource="SELECT CONVERT(CHAR(8), (DATEADD(DAY, -14, GETDATE())),112)"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Today_min14" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\P_APP_DayLoad_COBK"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{A6E9D26A-56C2-46F2-B29D-252D3858EEE1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="P_APP_DayLoad_COBK"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DF4755D8-914B-450A-A943-213A080FF7A7}"
+          SQLTask:SqlStatementSource="P_APP_DayLoad_COBK" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Log Import FACT COBK_Dayload"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{1B66F55B-C7BC-41C0-96E8-C668D8A64AEF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Log Import FACT COBK_Dayload"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StartLog 'Import FACT COBK_DayLoad'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stop Log Import FACT COBK_Dayload"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{E94A0508-A67F-4A07-929A-E8DAFFF49F75}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stop Log Import FACT COBK_Dayload"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StopLog 'Import FACT COBK_DayLoad', 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung]"
+      DTS:CreationName=""
+      DTS:DTSID="{AA64E8C3-04EA-432E-84B3-9769AE1A2169}"
+      DTS:From="Package\Delta_Load_nach Datum"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung"
+      DTS:To="Package\P_APP_DayLoad_COBK" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{297669AF-25DB-4D3A-99F0-86A066B5B1DA}"
+      DTS:From="Package\Get Today-14"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 1"
+      DTS:To="Package\Delta_Load_nach Datum" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{669E7C6B-5962-46A4-8626-B9E5A343C37B}"
+      DTS:From="Package\Start Log Import FACT COBK_Dayload"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 2"
+      DTS:To="Package\Get Today-14" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{19622649-5CCF-4847-A900-5A9A8BCD8E6F}"
+      DTS:From="Package\P_APP_DayLoad_COBK"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 3"
+      DTS:To="Package\Stop Log Import FACT COBK_Dayload" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Dieser CDATA-Abschnitt enthält die Layoutinformationen des Pakets, z.B. Informationen wie X-/Y-Koordinaten, Breite und Höhe.-->
+<!--Wenn Sie diesen Abschnitt manuell ändern und Ihnen ein Fehler unterläuft, können Sie ihn löschen. -->
+<!--Das Paket kann zwar weiterhin normal geladen werden, aber frühere Layoutinformationen gehen verloren, und die Elemente auf der Entwurfsoberfläche werden vom Designer automatisch neu angeordnet.-->
+<Objects
+  Version="8">
+  <!--Jeder darunter liegende Knoten enthält Eigenschaften, die sich nicht auf das Laufzeitverhalten auswirken.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Delta_Load_nach Datum"
+          TopLeft="156,134" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\Get Today-14"
+          TopLeft="321,60" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\P_APP_DayLoad_COBK"
+          TopLeft="150,230" />
+        <NodeLayout
+          Size="261,42"
+          Id="Package\Start Log Import FACT COBK_Dayload"
+          TopLeft="43,57" />
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Stop Log Import FACT COBK_Dayload"
+          TopLeft="135,306" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung]"
+          TopLeft="253.5,176">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.5,54"
+              Start="0,0"
+              End="-8.5,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="-4,27" />
+                  <mssgle:LineSegment
+                    End="-4.5,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.5,27"
+                    Point2="-8.5,27"
+                    Point3="-8.5,31" />
+                  <mssgle:LineSegment
+                    End="-8.5,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 1]"
+          TopLeft="393.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-140,32"
+              Start="0,0"
+              End="-140,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12"
+                    Point2="0,16"
+                    Point3="-4,16" />
+                  <mssgle:LineSegment
+                    End="-136,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-136,16"
+                    Point2="-140,16"
+                    Point3="-140,20" />
+                  <mssgle:LineSegment
+                    End="-140,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 2]"
+          TopLeft="173.5,57">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="217,3"
+              Start="0,0"
+              End="217,-4.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-18.5"
+                    Point2="0,-22.5"
+                    Point3="4,-22.5" />
+                  <mssgle:LineSegment
+                    End="213,-22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="213,-22.5"
+                    Point2="217,-22.5"
+                    Point3="217,-18.5" />
+                  <mssgle:LineSegment
+                    End="217,-4.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 3]"
+          TopLeft="245,272">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5,34"
+              Start="0,0"
+              End="19.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="15.5,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,17"
+                    Point2="19.5,17"
+                    Point3="19.5,21" />
+                  <mssgle:LineSegment
+                    End="19.5,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Delta_Load_nach Datum">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="108,42"
+          Id="Package\Delta_Load_nach Datum\COBK"
+          TopLeft="75,138" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad"
+          TopLeft="474,152" />
+        <EdgeLayout
+          Id="Package\Delta_Load_nach Datum.Paths[XtractOutput]"
+          TopLeft="183,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="291,14"
+              Start="0,0"
+              End="283.5,14">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="141.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="141.5,0"
+                    Point2="145.5,0"
+                    Point3="145.5,4" />
+                  <mssgle:LineSegment
+                    End="145.5,10" />
+                  <mssgle:CubicBezierSegment
+                    Point1="145.5,10"
+                    Point2="145.5,14"
+                    Point3="149.5,14" />
+                  <mssgle:LineSegment
+                    End="283.5,14" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Delta_Load_nach Datum\T_Import_FACT_COBK_DayLoad">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

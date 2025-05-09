@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34601.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SSIS_SICORE_SAP_HR3", "SSIS_SICORE_SAP_HR3.dtproj", "{2C15E2CA-BF66-44AE-9746-45E3B1C098B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C15E2CA-BF66-44AE-9746-45E3B1C098B4}.Development|Default.ActiveCfg = Development
+		{2C15E2CA-BF66-44AE-9746-45E3B1C098B4}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A34F0C33-3933-488B-93B3-D2D5A2829791}
+	EndGlobalSection
+EndGlobal

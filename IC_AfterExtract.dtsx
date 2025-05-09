@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/3/2014 7:47:17 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DBP331003"
+  DTS:CreatorName="SYSTEM\u088524"
+  DTS:DTSID="{6EA2DCEA-1D46-4B45-A7A2-1493307678EE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="IC_AfterExtract"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{0A94ECFB-43FE-475C-8AE0-68A7836E21C7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Imp Dim Rep 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{5dcfe9ab-e8f9-4c58-a0bd-57fcefbd9ca1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Imp Dim Rep 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DF4755D8-914B-450A-A943-213A080FF7A7}"
+          SQLTask:SqlStatementSource="Insert Into T_Import_DIM_RFREISCDCN&#xA;(BUKRS, SWENR, SMENR, RECNNR, RECNTXT, BSJH, XCONDTYPEM, RHYTHM, INDEXCHGPERCENT, INDEXCHGPOINTS,  EANP, LADJMFROMOLD,&#xA; Letzter_In, Letzter_ge_Dat, Letzter_ge_Val, PERCENTAGEPASS, NaechstMARegel, ZeileGültigAb, ZeileGültigBis, REPORTDATE, SRC)&#xA;Select&#xA;Substring(Import_Row, x1.pos + 1, x2.pos - x1.pos - 1) BUKRS,&#xA;Substring(Import_Row, x2.pos + 1, x3.pos - x2.pos - 1) SWENR,&#xA;Substring(Import_Row, x3.pos + 1, x4.pos - x3.pos - 1) SMENR,&#xA;Substring(Import_Row, x4.pos + 1, x5.pos - x4.pos - 1) RECNNR,&#xA;Substring(Import_Row, x5.pos + 1, x6.pos - x5.pos - 1) RECNTXT,&#xA;Substring(Import_Row, x6.pos + 1, x7.pos - x6.pos - 1) BSJH,&#xA;Substring(Import_Row, x7.pos + 1, x8.pos - x7.pos - 1) XCONDTYPEM,&#xA;Substring(Import_Row, x8.pos + 1, x9.pos - x8.pos - 1) RHYTHM,&#xA;Substring(Import_Row, x9.pos + 1, x10.pos - x9.pos - 1) INDEXCHGPERCENT,&#xA;Substring(Import_Row, x10.pos + 1, x11.pos - x10.pos - 1) INDEXCHGPOINTS,&#xA;Substring(Import_Row, x11.pos + 1, x12.pos - x11.pos - 1) EANP,&#xA;Substring(Import_Row, x12.pos + 1, x13.pos - x12.pos - 1) LADJMFROMOLD,&#xA;Substring(Import_Row, x13.pos + 1, x14.pos - x13.pos - 1) Letzter_In,&#xA;Substring(Import_Row, x14.pos + 1, x15.pos - x14.pos - 1) Letzter_ge_Dat,&#xA;Substring(Import_Row, x15.pos + 1, x16.pos - x15.pos - 1) Letzter_ge_Val,&#xA;Substring(Import_Row, x16.pos + 1, x17.pos - x16.pos - 1) PERCENTAGEPASS,&#xA;Substring(Import_Row, x17.pos + 1, x18.pos - x17.pos - 1) NeachstMARegel,&#xA;Substring(Import_Row, x18.pos + 1, x19.pos - x18.pos - 1) ZeileGültigAb,&#xA;Substring(Import_Row, x19.pos + 1, x20.pos - x19.pos - 1) ZeileGültigBis,&#xA;GetDate() REPORTDATE, src&#xA;from T_Import_DIM_RFREISCDCN_pass&#xA;cross apply (Select CharIndex('|', Import_Row, 0)) x1 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x1.pos+1)) x2 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x2.pos+1)) x3 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x3.pos+1)) x4 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x4.pos+1)) x5 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x5.pos+1)) x6 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x6.pos+1)) x7 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x7.pos+1)) x8 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x8.pos+1)) x9 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x9.pos+1)) x10 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x10.pos+1)) x11 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x11.pos+1)) x12 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x12.pos+1)) x13 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x13.pos+1)) x14 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x14.pos+1)) x15 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x15.pos+1)) x16 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x16.pos+1)) x17 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x17.pos+1)) x18 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x18.pos+1)) x19 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x19.pos+1)) x20 (pos)&#xA;&#xA;where Left(Import_Row, 3) &lt;&gt; '|--'&#xA;and Left(Import_Row, 5) &lt;&gt; '|BuKr'&#xA;and Left(Import_Row, 2) &lt;&gt; '--'&#xA;and Left(Import_Row, 1) = '|'&#xA;and Import_Row not like '%Liste enthält keine Daten%'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Imp Dim Rep Index"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{b7591149-dcea-47c9-ad9e-57fdca24b4ed}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Imp Dim Rep Index"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DF4755D8-914B-450A-A943-213A080FF7A7}"
+          SQLTask:SqlStatementSource="Insert Into T_Import_DIM_RFREISCDCN_INDEX&#xA;(BUKRS, SWENR, SMENR, RECNNR, RECNTXT, BSJH, XCONDTYPEM, RHYTHM, INDEXCHGPERCENT, INDEXCHGPOINTS,  EANP, LADJMFROMOLD,&#xA; Letzter_In, Letzter_ge_Dat, Letzter_ge_Val, PERCENTAGEPASS, NaechstMARegel, ZeileGültigAb, ZeileGültigBis, REPORTDATE, SRC)&#xA;Select&#xA;Substring(Import_Row, x1.pos + 1, x2.pos - x1.pos - 1) BUKRS,&#xA;Substring(Import_Row, x2.pos + 1, x3.pos - x2.pos - 1) SWENR,&#xA;Substring(Import_Row, x3.pos + 1, x4.pos - x3.pos - 1) SMENR,&#xA;Substring(Import_Row, x4.pos + 1, x5.pos - x4.pos - 1) RECNNR,&#xA;Substring(Import_Row, x5.pos + 1, x6.pos - x5.pos - 1) RECNTXT,&#xA;Substring(Import_Row, x6.pos + 1, x7.pos - x6.pos - 1) BSJH,&#xA;Substring(Import_Row, x7.pos + 1, x8.pos - x7.pos - 1) XCONDTYPEM,&#xA;Substring(Import_Row, x8.pos + 1, x9.pos - x8.pos - 1) RHYTHM,&#xA;Substring(Import_Row, x9.pos + 1, x10.pos - x9.pos - 1) INDEXCHGPERCENT,&#xA;Substring(Import_Row, x10.pos + 1, x11.pos - x10.pos - 1) INDEXCHGPOINTS,&#xA;Substring(Import_Row, x11.pos + 1, x12.pos - x11.pos - 1) EANP,&#xA;Substring(Import_Row, x12.pos + 1, x13.pos - x12.pos - 1) LADJMFROMOLD,&#xA;Substring(Import_Row, x13.pos + 1, x14.pos - x13.pos - 1) Letzter_In,&#xA;Substring(Import_Row, x14.pos + 1, x15.pos - x14.pos - 1) Letzter_ge_Dat,&#xA;Substring(Import_Row, x15.pos + 1, x16.pos - x15.pos - 1) Letzter_ge_Val,&#xA;Substring(Import_Row, x16.pos + 1, x17.pos - x16.pos - 1) PERCENTAGEPASS,&#xA;Substring(Import_Row, x17.pos + 1, x18.pos - x17.pos - 1) NeachstMARegel,&#xA;Substring(Import_Row, x18.pos + 1, x19.pos - x18.pos - 1) ZeileGültigAb,&#xA;Substring(Import_Row, x19.pos + 1, x20.pos - x19.pos - 1) ZeileGültigBis,&#xA;GetDate() REPORTDATE, src&#xA;from T_Import_DIM_RFREISCDCN_pass_INDEX&#xA;cross apply (Select CharIndex('|', Import_Row, 0)) x1 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x1.pos+1)) x2 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x2.pos+1)) x3 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x3.pos+1)) x4 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x4.pos+1)) x5 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x5.pos+1)) x6 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x6.pos+1)) x7 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x7.pos+1)) x8 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x8.pos+1)) x9 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x9.pos+1)) x10 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x10.pos+1)) x11 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x11.pos+1)) x12 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x12.pos+1)) x13 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x13.pos+1)) x14 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x14.pos+1)) x15 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x15.pos+1)) x16 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x16.pos+1)) x17 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x17.pos+1)) x18 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x18.pos+1)) x19 (pos)&#xA;cross apply (Select CharIndex('|', Import_Row, x19.pos+1)) x20 (pos)&#xA;&#xA;where Left(Import_Row, 3) &lt;&gt; '|--'&#xA;and Left(Import_Row, 5) &lt;&gt; '|BuKr'&#xA;and Left(Import_Row, 2) &lt;&gt; '--'&#xA;and Left(Import_Row, 1) = '|'&#xA;and Import_Row not like '%Liste enthält keine Daten%'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import Fact Reports 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{704d3bd7-10ef-453e-9c1b-b4690448068c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import Fact Reports 1"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DF4755D8-914B-450A-A943-213A080FF7A7}"
+          SQLTask:SqlStatementSource="Insert Into T_Import_FACT_RFREISCNPE&#xA;Select &#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(1, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(2, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(1, '|', Import_Row, 0) - 1) BUKRS,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(2, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(3, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(2, '|', Import_Row, 0) - 1) RECNNR,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(3, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(4, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(3, '|', Import_Row, 0) - 1) RECNBEG,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(4, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(5, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(4, '|', Import_Row, 0) - 1) RECNEND1ST,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(5, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(6, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(5, '|', Import_Row, 0) - 1) RECNENDABS,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(6, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(7, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(6, '|', Import_Row, 0) - 1) RNHASRULE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(7, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(8, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(7, '|', Import_Row, 0) - 1) RNENDNEW,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(8, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(9, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(8, '|', Import_Row, 0) - 1) PESTATE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(9, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(10, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(9, '|', Import_Row, 0) - 1) NTPER,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(10, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(11, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(10, '|', Import_Row, 0) - 1) XRECNNOTREASON,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(11, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(12, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(11, '|', Import_Row, 0) - 1) RNEXTDATE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(12, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(13, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(12, '|', Import_Row, 0) - 1) RNNOTDATE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(13, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(14, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(13, '|', Import_Row, 0) - 1) [STATUS],&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(14, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(15, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(14, '|', Import_Row, 0) - 1) XRNDECISION,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(15, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(16, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(15, '|', Import_Row, 0) - 1) XRNRULETYPE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(16, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(17, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(16, '|', Import_Row, 0) - 1) RNENDMAX,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(17, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(18, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(17, '|', Import_Row, 0) - 1) RECISVALIDFROM,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(18, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(19, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(18, '|', Import_Row, 0) - 1) RECISVALIDTO,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(19, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(20, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(19, '|', Import_Row, 0) - 1) NTALLOWEDPAR,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(20, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(21, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(20, '|', Import_Row, 0) - 1) NTALLOWEDOWN,&#xA;GetDate() REPORTDATE&#xA;from T_Import_FACT_RFREISCNPE_pass&#xA;where Left(Import_Row, 3) &lt;&gt; '|--'&#xA;and Left(Import_Row, 5) &lt;&gt; '|Bukr'&#xA;and Left(Import_Row, 2) &lt;&gt; '--'&#xA;and Left(Import_Row, 1) = '|'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import Fact Reports 2"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{a317af70-da37-4a43-a8a9-df8de51c421f}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import Fact Reports 2"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DF4755D8-914B-450A-A943-213A080FF7A7}"
+          SQLTask:SqlStatementSource="Insert Into T_Import_FACT_RFREISCNPE2&#xA;(BUKRS, RECNNR, RECNBEG, RECNEND1ST, RECNENDABS, RNHASRULE, RNENDNEW, PESTATE, NTPER, XRECNNOTREASON, RNEXTDATE, RNNOTDATE, &#xA; [STATUS], XRNDECISION, XRNRULETYPE, RNENDMAX, RECISVALIDFROM, RECISVALIDTO, REPORTDATE)&#xA;Select&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(1, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(2, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(1, '|', Import_Row, 0) - 1) BUKRS,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(2, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(3, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(2, '|', Import_Row, 0) - 1) RECNNR,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(3, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(4, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(3, '|', Import_Row, 0) - 1) RECNBEG,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(4, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(5, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(4, '|', Import_Row, 0) - 1) RECNEND1ST,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(5, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(6, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(5, '|', Import_Row, 0) - 1) RECNENDABS,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(6, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(7, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(6, '|', Import_Row, 0) - 1) RNHASRULE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(7, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(8, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(7, '|', Import_Row, 0) - 1) RNENDNEW,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(8, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(9, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(8, '|', Import_Row, 0) - 1) PESTATE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(9, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(10, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(9, '|', Import_Row, 0) - 1) NTPER,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(10, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(11, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(10, '|', Import_Row, 0) - 1) XRECNNOTREASON,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(11, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(12, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(11, '|', Import_Row, 0) - 1) RNEXTDATE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(12, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(13, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(12, '|', Import_Row, 0) - 1) RNNOTDATE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(13, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(14, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(13, '|', Import_Row, 0) - 1) [STATUS],&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(14, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(15, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(14, '|', Import_Row, 0) - 1) XRNDECISION,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(15, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(16, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(15, '|', Import_Row, 0) - 1) XRNRULETYPE,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(16, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(17, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(16, '|', Import_Row, 0) - 1) RNENDMAX,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(17, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(18, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(17, '|', Import_Row, 0) - 1) RECISVALIDFROM,&#xA;Substring(Import_Row, dbo.GetAfterXTimes_Pos(18, '|', Import_Row, 0) + 1, dbo.GetAfterXTimes_Pos(19, '|', Import_Row, 0) - dbo.GetAfterXTimes_Pos(18, '|', Import_Row, 0) - 1) RECISVALIDTO,&#xA;GetDate() REPORTDATE&#xA;from T_Import_FACT_RFREISCNPE2_pass&#xA;where Left(Import_Row, 3) &lt;&gt; '|--'&#xA;and Left(Import_Row, 5) &lt;&gt; '|Bukr'&#xA;and Left(Import_Row, 1) = '|'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Log AfterExtract"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{8f8adf87-bb6a-476a-9756-d4b580c48102}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Log AfterExtract"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StartLog 'After Extract'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stop Log AfterExtract"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:DTSID="{09c2fae8-65ff-4ba9-a859-1e6111748efc}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stop Log AfterExtract"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StopLog 'After Extract', 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung]"
+      DTS:CreationName=""
+      DTS:DTSID="{4E3CF46C-DA2A-47B7-B6F7-3762CD1CDD09}"
+      DTS:From="Package\Imp Dim Rep 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung"
+      DTS:To="Package\Imp Dim Rep Index" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D7564A06-80F6-411D-A81B-A1850CBF8407}"
+      DTS:From="Package\Imp Dim Rep Index"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 1"
+      DTS:To="Package\Import Fact Reports 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 33]"
+      DTS:CreationName=""
+      DTS:DTSID="{1c16cb51-1b0f-481d-9695-b24446bc9b3c}"
+      DTS:From="Package\Import Fact Reports 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 33"
+      DTS:To="Package\Import Fact Reports 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 49]"
+      DTS:CreationName=""
+      DTS:DTSID="{c040f1f2-3994-4cd8-b452-c13925f2b45d}"
+      DTS:From="Package\Start Log AfterExtract"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 49"
+      DTS:To="Package\Imp Dim Rep 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 50]"
+      DTS:CreationName=""
+      DTS:DTSID="{769761b7-8d91-4df4-ad65-6ab74cdec1c8}"
+      DTS:From="Package\Import Fact Reports 2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 50"
+      DTS:To="Package\Stop Log AfterExtract" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Dieser CDATA-Abschnitt enthält die Layoutinformationen des Pakets, z.B. Informationen wie X-/Y-Koordinaten, Breite und Höhe.-->
+<!--Wenn Sie diesen Abschnitt manuell ändern und Ihnen ein Fehler unterläuft, können Sie ihn löschen. -->
+<!--Das Paket kann zwar weiterhin normal geladen werden, aber frühere Layoutinformationen gehen verloren, und die Elemente auf der Entwurfsoberfläche werden vom Designer automatisch neu angeordnet.-->
+<Objects
+  Version="8">
+  <!--Jeder darunter liegende Knoten enthält Eigenschaften, die sich nicht auf das Laufzeitverhalten auswirken.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="126,44"
+          Id="Package\Imp Dim Rep 1"
+          TopLeft="198.150943396226,173.43396226415" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Imp Dim Rep Index"
+          TopLeft="356,171.24528301887" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Import Fact Reports 1"
+          TopLeft="376.754716981132,255.69811320754" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Import Fact Reports 2"
+          TopLeft="211.528301886792,324.67924528302" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Start Log AfterExtract"
+          TopLeft="70,40" />
+        <NodeLayout
+          Size="162,44"
+          Id="Package\Stop Log AfterExtract"
+          TopLeft="105.018867924528,413.24528301887" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung]"
+          TopLeft="324.150943396226,193.83962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31.849056603774,0"
+              Start="0,0"
+              End="24.349056603774,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="24.349056603774,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 1]"
+          TopLeft="443.627358490566,213.24528301887">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.4528301886701"
+              Start="0,0"
+              End="0,34.9528301886701">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9528301886701" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 33]"
+          TopLeft="444.754716981132,299.69811320754">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-165.22641509434,24.98113207548"
+              Start="0,0"
+              End="-165.22641509434,17.48113207548">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.49056603774" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.49056603774"
+                    Point2="0,12.49056603774"
+                    Point3="-4,12.49056603774" />
+                  <mssgle:LineSegment
+                    End="-161.22641509434,12.49056603774" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-161.22641509434,12.49056603774"
+                    Point2="-165.22641509434,12.49056603774"
+                    Point3="-165.22641509434,16.49056603774" />
+                  <mssgle:LineSegment
+                    End="-165.22641509434,17.48113207548" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 49]"
+          TopLeft="158,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103.150943396226,91.4339622641501"
+              Start="0,0"
+              End="103.150943396226,83.9339622641501">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.716981132075" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.716981132075"
+                    Point2="0,45.716981132075"
+                    Point3="4,45.716981132075" />
+                  <mssgle:LineSegment
+                    End="99.150943396226,45.716981132075" />
+                  <mssgle:CubicBezierSegment
+                    Point1="99.150943396226,45.716981132075"
+                    Point2="103.150943396226,45.716981132075"
+                    Point3="103.150943396226,49.716981132075" />
+                  <mssgle:LineSegment
+                    End="103.150943396226,83.9339622641501" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 50]"
+          TopLeft="279.528301886792,368.67924528302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-93.509433962264,44.5660377358499"
+              Start="0,0"
+              End="-93.509433962264,37.0660377358499">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.283018867925" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.283018867925"
+                    Point2="0,22.283018867925"
+                    Point3="-4,22.283018867925" />
+                  <mssgle:LineSegment
+                    End="-89.509433962264,22.283018867925" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-89.509433962264,22.283018867925"
+                    Point2="-93.509433962264,22.283018867925"
+                    Point3="-93.509433962264,26.283018867925" />
+                  <mssgle:LineSegment
+                    End="-93.509433962264,37.0660377358499" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

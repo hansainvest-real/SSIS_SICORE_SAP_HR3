@@ -1,0 +1,2789 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CheckpointFileName="C:\temp\SSIS_IC_DataImport_Checkpoint.xml"
+  DTS:CreationDate="7/14/2008 10:27:48 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DBA331001"
+  DTS:CreatorName="SYSTEM-A\u082841a"
+  DTS:DTSID="{713B7C11-2BB0-4A78-8D63-0E24ED505F4F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1031"
+  DTS:ObjectName="IC_DataImport_AfterProcess"
+  DTS:PackageType="5"
+  DTS:VersionBuild="813"
+  DTS:VersionGUID="{B5340264-543D-47E1-8B65-6A39D52215C6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="RDB_Target_Import"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Schreibt Protokolleinträge für Ereignisse in eine SQL Server-Datenbank."
+      DTS:DTSID="{F1B39212-9AB6-4721-9FAF-5D95860B3E9A}"
+      DTS:ObjectName="SSIS-Protokollanbieter für SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{36F5C6E6-D38B-42B9-9C20-568F669B78F5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="BUKRS">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7B897122-230C-46F6-8744-2174375FE0C9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="GJahr">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9903DC8B-B18E-496C-A225-40D37991402D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="i">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{53E34906-BFC1-495A-839B-9D58CAD26133}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="ImportBuchungskreis">
+      <DTS:VariableValue
+        DTS:DataType="8">%</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4E31D56B-A745-46C0-A535-EF168A522266}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Is22ofMonth">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{18B18843-D7FF-4C18-97B1-A2E39E5E96C5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsActicoRules">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{720FAAB8-3A06-4AC5-88A5-17AFAB72DC9F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsMiddleofMonth">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{48E6FE76-4EFF-4AF8-8D07-528715E0B57F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsQuarterDay">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{10DD91D4-2658-41A0-B7ED-0AB88731ECF7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsQuarterDayPlus13">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D8F1C40F-0CFC-4EC8-A047-D92E778C4659}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsReportDate">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B401920B-75F6-4666-9FE9-A95A57E69AF1}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="Notes_RowNr">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E13577E6-38A4-43D4-9077-C4D31F2DD1B6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="Notes_Rows">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5AFAF6E1-9439-4823-92D7-39F8669A1349}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="Notes_TDID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1921D153-34AF-49BD-953B-6B981102210A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="Notes_TDName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D871FD29-AECD-4041-B8EC-446EEC73CC7B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="Notes_TDObject">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{586850A8-48AF-4F09-8888-DA7CE3064D01}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="Notes_TDSpras">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5FBB1DE3-BD9E-4A70-A460-DF3F2DFB5A94}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="RS_BUKRS">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B88F283D-62F7-4E8E-BC19-AE953EC776A8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="sNeueKonten">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9D35DEF8-0297-4D02-8D91-F3D1FB44FBDB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Startlog_NeueKonten">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2A2699D9-2929-402F-9FE3-BCB0D90E28F3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="sStrSQL_Stoplog_NeueKonten">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{08D00994-7610-41F0-A0C2-BD4DA3DD68D3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TimeForOP">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{67C52B5D-BF92-497A-8250-619E6E0A509F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TimeForVKW">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D2192096-AE75-47C7-9B68-2C15F3FE2ECE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="Benutzer"
+      DTS:ObjectName="TIMESTMP">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{874981D7-7389-474E-952B-FB827D367FF3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Today_min5">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">1,18,OnPipelineRowsSent</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\After Extract"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{AD48CB2D-69CC-4C7F-85C0-A82654708F7B}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="After Extract"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_AfterExtract.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\After Process"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{77A7EB23-5915-49A1-8687-CF95BEDE4A31}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="After Process"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_AfterProcess.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\BKPF_DayLoad"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{BE84DE04-32DC-4CCD-A613-EDF1CF9117A3}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="BKPF_DayLoad"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_DayLoad_BKPF.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\COBK_Dayload"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{329A8BDC-4FCD-4697-8ED8-D6BCB830EBFF}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="COBK_Dayload"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_DayLoad_COBK.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Dimension Reports"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{84959A92-15E1-40AD-80CA-E96182D59074}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dimension Reports"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_DimReps.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Dimension Reports INDEX"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{E750C218-1EC1-4DF9-B019-A16B3D03410B}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dimension Reports INDEX"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_DimReps_Index.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Dimension Tables"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{FCE375E0-9554-4615-B72B-0A8A19014459}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dimension Tables"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_DimTabs.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Facts BKPF"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{4FF6AB1A-A61F-4745-8276-2FC46D969EC8}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Facts BKPF"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_FactBKPF.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Facts BSEG"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{F664803A-EEF1-4B1E-8937-7B4BCF219FDA}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Facts BSEG"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_FactBSEG.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Facts CO"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{945C99FD-AE12-4295-A124-B1376001A738}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Facts CO"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_FactCO.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Facts Remainder"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{C933A827-CCE9-4A3A-BABB-E655169D91F8}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Facts Remainder"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_FactRemain.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\If Is 22ofMonth is 1"
+      DTS:AssignExpression="@i = @i + 1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For-Schleifencontainer"
+      DTS:Disabled="True"
+      DTS:DTSID="{9A2E464C-2213-4040-9126-D6CE4FA3FA0E}"
+      DTS:EvalExpression="@i &lt; 1 &amp;&amp; @Is22ofMonth == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@i = 0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="If Is 22ofMonth is 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\If Is 22ofMonth is 1\Berichtsserverjob_FoBu"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{8FF4DB04-B57E-4557-B605-676861918DF9}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Berichtsserverjob_FoBu"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>IC_Berichtsserverjob_FoBu.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\If Is IsQuarterDay is 1"
+      DTS:AssignExpression="@i = @i + 1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For-Schleifencontainer"
+      DTS:Disabled="True"
+      DTS:DTSID="{15E477B4-7A8F-40D4-A2B9-45E2C61B4B76}"
+      DTS:EvalExpression="@i &lt; 1 &amp;&amp; @IsQuarterDay == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@i = 0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="If Is IsQuarterDay is 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\If Is IsQuarterDay is 1\Berichtsserverjob_Steckbrief"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{95F0806E-20CF-4315-BD3B-D06E73CAA162}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Berichtsserverjob_Steckbrief"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>IC_Berichtsserverjob_ObjektSteckbrief.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\If Is IsQuarterDay_plus_13 is 1"
+      DTS:AssignExpression="@i = @i + 1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For-Schleifencontainer"
+      DTS:Disabled="True"
+      DTS:DTSID="{FC93C3BD-6109-4225-A972-59705357FB3B}"
+      DTS:EvalExpression="@i &lt; 1 &amp;&amp; @IsQuarterDayPlus13 == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@i = 0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="If Is IsQuarterDay_plus_13 is 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\If Is IsQuarterDay_plus_13 is 1\Berichtsserverjob_AIFM"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{3D91D516-B331-4735-884B-65094F5FDAC9}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Berichtsserverjob_AIFM"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>IC_Berichtsserverjob_AIFM.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\If Is MiddleofMonth is 1"
+      DTS:AssignExpression="@i = @i + 1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For-Schleifencontainer"
+      DTS:Disabled="True"
+      DTS:DTSID="{D25951D0-E3E7-40FD-B47F-4BE6361FA01C}"
+      DTS:EvalExpression="@i &lt; 1 &amp;&amp; @IsMiddleofMonth == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@i = 0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="If Is MiddleofMonth is 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\If Is MiddleofMonth is 1\Berichtsserverjob_RM"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{C2F7D69C-3923-4073-A531-F6FE28A7CEED}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Berichtsserverjob_RM"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>IC_Berichtsserverjobs_RM.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\If Is TimeForOP is 1"
+      DTS:AssignExpression="@i = @i + 1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For-Schleifencontainer"
+      DTS:Disabled="True"
+      DTS:DTSID="{44D3AF8B-9071-4693-80AB-E363668E88CA}"
+      DTS:EvalExpression="@i &lt; 1 &amp;&amp; @TimeForOP == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@i = 0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="If Is TimeForOP is 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\If Is TimeForOP is 1\Berichtsserverjob_OP"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{B548488D-901F-4821-88B9-8A188656406C}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Berichtsserverjob_OP"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>IC_Berichtsserverjob_OP.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\If Is TimeForVKW is 1"
+      DTS:AssignExpression="@i = @i + 1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For-Schleifencontainer"
+      DTS:Disabled="True"
+      DTS:DTSID="{6D6B0661-A620-4F34-9C85-92115B05FC43}"
+      DTS:EvalExpression="@i &lt; 1 &amp;&amp; @TimeForVKW == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@i = 0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="If Is TimeForVKW is 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\If Is TimeForVKW is 1\Berichtsserverjob_VKW"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{EE4B7E4C-3B75-4284-8C25-6968BD6318A9}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Berichtsserverjob_VKW"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>IC_Berichtsserverjob_VKW.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\If IsReportDate is 1"
+      DTS:AssignExpression="@i = @i + 1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For-Schleifencontainer"
+      DTS:Disabled="True"
+      DTS:DTSID="{BE80AEFB-4721-446B-B229-D1C90A08E693}"
+      DTS:EvalExpression="@i &lt; 1 &amp;&amp; @IsReportDate == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@i = 0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="If IsReportDate is 1">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\If IsReportDate is 1\Berichtsserverjobs ausführen"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{C64D27F5-33D0-4209-AB5D-D56F5FB06DFC}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Berichtsserverjobs ausführen"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>IC_Berichtsserverjobs.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\If Start ActicoRules is 1 - cube"
+      DTS:AssignExpression="@i=@i+1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For-Schleifencontainer"
+      DTS:DTSID="{25124F36-D01C-471C-B622-0A95A5A6B907}"
+      DTS:EvalExpression="@i &lt; 1 &amp;&amp; @IsActicoRules == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@i=0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="If Start ActicoRules is 1 - cube">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\If Start ActicoRules is 1 - cube\P_APP_Calculate_And_Update_Cube_For_AM_Planning_daily_2"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{BEF7A636-B024-4C43-9112-40F00EF9A05C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="P_APP_Calculate_And_Update_Cube_For_AM_Planning_daily_2"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStatementSource="exec dbo.P_SYSLOG_Exec_Errorhandler 'ImmoControlling_RDB_Data.dbo.P_APP_Calculate_And_Update_Cube_For_AM_Planning_daily_2'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\If Start ActicoRules is 1 - relational"
+      DTS:AssignExpression="@i=@i+1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For-Schleifencontainer"
+      DTS:Disabled="True"
+      DTS:DTSID="{98AA67C7-1FFE-45AF-AEAD-2D28116A9146}"
+      DTS:EvalExpression="@i &lt; 1 &amp;&amp; @IsActicoRules == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@i=0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="If Start ActicoRules is 1 - relational">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\If Start ActicoRules is 1 - relational\P_APP_Calculate_And_Update_Cube_For_AM_Planning_daily_1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Task 'SQL ausführen'"
+          DTS:DTSID="{5815B298-F207-4BF3-8BE3-A22110EA528E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="P_APP_Calculate_And_Update_Cube_For_AM_Planning_daily_1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+              SQLTask:SqlStatementSource="exec dbo.P_SYSLOG_Exec_Errorhandler 'ImmoControlling_RDB_Data.dbo.P_APP_Calculate_And_Update_Cube_For_AM_Planning_daily_1'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ImmoBuKrs"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{DC1EC246-27BA-489D-8881-1E192B05BBE4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ImmoBuKrs"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="Select BUKRS from [ImmoControlling_RDB_Import].dbo.T_Import_DIM_T001&#xA;where IsNumeric(Replace(BUKRS, 'D', 'X')) = 1&#xA;and Cast(BUKRS as varchar) not in ('1000', '4900')"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="Benutzer::ImportBuchungskreis" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Initialize"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{A76285F5-80CC-406C-9AFB-81ACB61ECC52}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Initialize"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_Initialize.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Is22ofMonth?"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{BE0E5E83-D3B4-4EC5-B9AD-5BFECD79E4A8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Is22ofMonth?"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="SELECT CASE WHEN CONVERT(char(8),GETDATE(),112) LIKE '%22' THEN 1 ELSE 0 END AS Result"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::Is22ofMonth" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\IsMiddleofMonth?"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{FD8464F8-E047-426F-AFFA-B84C73C52915}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="IsMiddleofMonth?"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="SELECT CASE WHEN CONVERT(char(8),GETDATE(),112) LIKE '%15' THEN 1 ELSE 0 END AS Result"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::IsMiddleofMonth" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\IsReportDate?"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{8275DA2B-22EB-49A7-A70E-594554C9E7E7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="IsReportDate?"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="Select &#xA;case when Max(Dateadd(day, nr.nr, nr.eom)) &#xA; = Cast(GetDate() as date) &#xA; then 1 else 0 end IsReportDate&#xA;&#xA;from ( Select Top (Select day(EOMonth(GetDate())))&#xA; -1 * (Row_Number() over (order by (Select 1)) - 1) nr&#xA; , EOMonth(GetDate()) eom from sys.columns &#xA;)nr&#xA;where Datepart(dw, Dateadd(day, nr.nr, nr.eom))=7"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::IsReportDate" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\JCDS_DeltaLoad"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{F3567FCC-E123-430C-92ED-6FF902763D3E}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="JCDS_DeltaLoad"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_DayLoad_JCDS.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Notizen"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{BF3DF871-E097-40A8-A808-EA865C5ED1D7}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Notizen"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_Notizen.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process OLAP-DB"
+      DTS:CreationName="Microsoft.DTSProcessingTask"
+      DTS:Description="Analysis Services-Verarbeitungstask"
+      DTS:Disabled="True"
+      DTS:DTSID="{0902F1D7-4CFB-4F3A-91EF-D975E7E634CB}"
+      DTS:ExecutableType="Microsoft.DTSProcessingTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process OLAP-DB"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <ASProcessingData
+          ConnectionName="OLAP_Target"
+          ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;ImmoControlling_OLAP&lt;/DatabaseID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessFull&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\QuarterDay_plus_10?"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{149E662C-19C0-406F-9303-7922E0EA1649}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="QuarterDay_plus_10?"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="SELECT CASE WHEN CAST(DATEADD(qq,DATEDIFF(qq,0,GETDATE())+1,+9) as DATE) =  Cast(GetDate() as date)  THEN 1 ELSE 0 END AS Result"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::IsQuarterDay" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\QuarterDay_plus_13?"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{7AE0B752-A9B3-42B1-9A26-11B4E19D9EEC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="QuarterDay_plus_13?"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="SELECT CASE WHEN CAST(DATEADD(qq,DATEDIFF(qq,0,GETDATE())+1,+12) as DATE) =  Cast(GetDate() as date)  THEN 1 ELSE 0 END AS Result"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::IsQuarterDayPlus13" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SKB1_Dayload"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{3182B4D8-F177-40A4-82D2-606E526D49AA}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SKB1_Dayload"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_DayLoad_SKB1.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Split Repository-Anwendung für User"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{90EE3EEC-B1A1-4650-BE74-00F850AD3BD8}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Split Repository-Anwendung für User"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_Split_Repository.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start ActicoRules?"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{E1AA771B-E947-44E1-B3D9-1E5A381086B3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start ActicoRules?"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="SELECT MAX(Cast(Start_AR AS INT)) AS Start_AR FROM [ImmoControlling_RDB_DataEntry].[dbo].[T_S_Planungsversion]"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::IsActicoRules" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Start Log Process OLAP-DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{94338558-2ADD-4FA2-A28D-83628F57AE3A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Start Log Process OLAP-DB"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StartLog 'Process OLAP-DB'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\StartTransformation"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="StartTransformation"
+      DTS:DTSID="{7C378165-5A5A-4C1D-9A99-79B3671B2EB7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="StartTransformation"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="exec dbo.P_SYSLOG_StartTransformation" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Stop Log Process OLAP-DB"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Task 'SQL ausführen'"
+      DTS:Disabled="True"
+      DTS:DTSID="{17C26BB0-17EB-474B-9D04-35684EB08DF0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Stop Log Process OLAP-DB"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="EXEC P_SYSLOG_StopLog 'Process OLAP-DB', 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\StopTransformation"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="StopTransformation"
+      DTS:DTSID="{EF339018-C5CA-46A0-A4E8-95D1EB4FC579}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="StopTransformation"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="exec dbo.P_SYSLOG_StopTransformation" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TimeforOP?"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{D59A3ECF-4A33-4970-A0C8-7ED46946A587}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TimeforOP?"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="SELECT CASE WHEN CONVERT(char(8),GETDATE(),112) LIKE '%07' THEN 1 ELSE 0 END AS Result"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::TimeForOP" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TimeforVKW?"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{076E52A3-FC95-4880-86D1-4F7200962253}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TimeforVKW?"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}"
+          SQLTask:SqlStatementSource="SELECT CASE WHEN CONVERT(char(8),GETDATE(),112) LIKE '%03' THEN 1 ELSE 0 END AS Result"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::TimeForVKW" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transform and Load"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{8073996C-F560-4C50-970C-01A61D3291D9}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transform and Load"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_TransformLoad.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Hansa_US"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{50B57E3E-AB94-4B10-B539-5D334048748B}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Hansa_US"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>IC_Update_Hansa_US.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung]"
+      DTS:CreationName=""
+      DTS:DTSID="{52852B13-701E-4F6A-85E2-1E1259BF72C6}"
+      DTS:From="Package\Initialize"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung"
+      DTS:To="Package\Dimension Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4965AD82-CAE6-47D3-A947-ED33F98D534D}"
+      DTS:From="Package\Dimension Reports"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 1"
+      DTS:To="Package\Dimension Reports INDEX" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{B51E2FBE-ADC5-47CA-B674-71FDBE04644A}"
+      DTS:From="Package\Process OLAP-DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 10"
+      DTS:To="Package\Stop Log Process OLAP-DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{66509401-45ED-4F5F-81A2-97C3EA5AF679}"
+      DTS:From="Package\JCDS_DeltaLoad"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 11"
+      DTS:To="Package\BKPF_DayLoad" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{D6B9CD3B-EFB7-40B6-92ED-0EE7EB404D19}"
+      DTS:From="Package\Transform and Load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 12"
+      DTS:To="Package\IsReportDate?" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{8B81A8FE-55FF-4916-A844-8E79E7D2A649}"
+      DTS:From="Package\IsReportDate?"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 13"
+      DTS:To="Package\Start Log Process OLAP-DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{57875175-A9CD-4E08-A05D-C712569BD6E3}"
+      DTS:From="Package\Transform and Load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 14"
+      DTS:To="Package\Start ActicoRules?" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{394B116C-5FE4-4B3A-8417-2B9F343309F3}"
+      DTS:From="Package\After Process"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 15"
+      DTS:To="Package\If IsReportDate is 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 16]"
+      DTS:CreationName=""
+      DTS:DTSID="{645EFDF4-01D6-4089-B167-01B51F055462}"
+      DTS:From="Package\StartTransformation"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 16"
+      DTS:To="Package\Initialize" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 17]"
+      DTS:CreationName=""
+      DTS:DTSID="{C3E96CB9-F888-4F60-AA59-59C180759B28}"
+      DTS:From="Package\Update Hansa_US"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 17"
+      DTS:To="Package\If Start ActicoRules is 1 - cube" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 18]"
+      DTS:CreationName=""
+      DTS:DTSID="{2B660D6F-3E54-4402-B976-00C521D4DAB1}"
+      DTS:From="Package\Is22ofMonth?"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 18"
+      DTS:To="Package\If Is 22ofMonth is 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 19]"
+      DTS:CreationName=""
+      DTS:DTSID="{E170122C-9083-4669-933C-BD5CAA9DF285}"
+      DTS:From="Package\TimeforVKW?"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 19"
+      DTS:To="Package\If Is TimeForVKW is 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BD58B913-13B7-443F-A312-C086B58D47EF}"
+      DTS:From="Package\Dimension Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 2"
+      DTS:To="Package\SKB1_Dayload" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{7C08A55F-A498-4149-945F-D3D6A3CBF7F0}"
+      DTS:From="Package\Dimension Reports INDEX"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 20"
+      DTS:To="Package\Facts Remainder" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 21]"
+      DTS:CreationName=""
+      DTS:DTSID="{213B8771-0207-43D8-89DF-D07298F5125A}"
+      DTS:From="Package\If Is TimeForVKW is 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 21"
+      DTS:To="Package\TimeforOP?" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 22]"
+      DTS:CreationName=""
+      DTS:DTSID="{6BE94490-C83B-4DEB-A93D-8A1DB61FE768}"
+      DTS:From="Package\If Is 22ofMonth is 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 22"
+      DTS:To="Package\TimeforVKW?" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 23]"
+      DTS:CreationName=""
+      DTS:DTSID="{9F955AED-0A18-4490-8F2B-EA6A2463B20B}"
+      DTS:From="Package\QuarterDay_plus_10?"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 23"
+      DTS:To="Package\If Is IsQuarterDay is 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 24]"
+      DTS:CreationName=""
+      DTS:DTSID="{12BA06C7-1356-45FE-B82B-54EFB4446A3C}"
+      DTS:From="Package\Facts Remainder"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 24"
+      DTS:To="Package\JCDS_DeltaLoad" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 25]"
+      DTS:CreationName=""
+      DTS:DTSID="{78593E5D-44D9-4531-8E5B-D120A4BF521E}"
+      DTS:From="Package\TimeforOP?"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 25"
+      DTS:To="Package\If Is TimeForOP is 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 26]"
+      DTS:CreationName=""
+      DTS:DTSID="{115E84D8-C1CB-4C3C-B19A-2EF090166687}"
+      DTS:From="Package\If Is TimeForOP is 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 26"
+      DTS:To="Package\QuarterDay_plus_10?" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 27]"
+      DTS:CreationName=""
+      DTS:DTSID="{C6247D9E-83F1-42C3-9662-978B3F0B09E2}"
+      DTS:From="Package\COBK_Dayload"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 27"
+      DTS:To="Package\Notizen" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 28]"
+      DTS:CreationName=""
+      DTS:DTSID="{CAA1E799-A4DC-4CB5-A296-F9246A352CB7}"
+      DTS:From="Package\BKPF_DayLoad"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 28"
+      DTS:To="Package\Facts BSEG" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 29]"
+      DTS:CreationName=""
+      DTS:DTSID="{61224CB5-7CF9-4A90-86E7-C571848832D9}"
+      DTS:From="Package\If Start ActicoRules is 1 - cube"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 29"
+      DTS:To="Package\StopTransformation" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{68B7EFCB-6D25-4D45-9D6E-A6448F541B73}"
+      DTS:From="Package\QuarterDay_plus_13?"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 3"
+      DTS:To="Package\If Is IsQuarterDay_plus_13 is 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 30]"
+      DTS:CreationName=""
+      DTS:DTSID="{2A8F8146-DAAB-43E2-915C-49643A1E08E5}"
+      DTS:From="Package\SKB1_Dayload"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 30"
+      DTS:To="Package\Dimension Reports" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 31]"
+      DTS:CreationName=""
+      DTS:DTSID="{44BB5532-F2EC-4416-A9F8-785DFE368BF1}"
+      DTS:From="Package\IsMiddleofMonth?"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 31"
+      DTS:To="Package\If Is MiddleofMonth is 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 32]"
+      DTS:CreationName=""
+      DTS:DTSID="{8C9D092C-33F7-466A-87F3-D4724AEFFCBF}"
+      DTS:From="Package\StartTransformation"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 32"
+      DTS:To="Package\Split Repository-Anwendung für User" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 33]"
+      DTS:CreationName=""
+      DTS:DTSID="{99192C21-2899-4694-97C9-B81E36A685D7}"
+      DTS:From="Package\If Is MiddleofMonth is 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 33"
+      DTS:To="Package\Update Hansa_US" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 34]"
+      DTS:CreationName=""
+      DTS:DTSID="{A452D582-28AB-4070-A0A8-F16A0D39D49A}"
+      DTS:From="Package\Start ActicoRules?"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 34"
+      DTS:To="Package\If Start ActicoRules is 1 - relational" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 35]"
+      DTS:CreationName=""
+      DTS:DTSID="{655A44F6-D60A-4EA1-81F5-026E511F9D9C}"
+      DTS:From="Package\If Is IsQuarterDay is 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 35"
+      DTS:To="Package\QuarterDay_plus_13?" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 36]"
+      DTS:CreationName=""
+      DTS:DTSID="{D71623E8-227B-4818-AE0D-7F458C2E6BE2}"
+      DTS:From="Package\If Is IsQuarterDay_plus_13 is 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 36"
+      DTS:To="Package\IsMiddleofMonth?" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{A8C7E3C5-47A8-4ABD-9B1A-9DBB2721AE95}"
+      DTS:From="Package\Facts BSEG"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 4"
+      DTS:To="Package\Facts CO" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{E7F8D708-7231-4732-BDDC-C2E1ECDA0A17}"
+      DTS:From="Package\Facts CO"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 5"
+      DTS:To="Package\COBK_Dayload" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{D52CCDE6-3A28-466A-BE1A-5536037105EB}"
+      DTS:From="Package\Notizen"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 6"
+      DTS:To="Package\After Extract" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{521C829F-9D59-4F3E-B3AB-7764FF831B10}"
+      DTS:From="Package\After Extract"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 7"
+      DTS:To="Package\Transform and Load" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{A5608A76-13B8-46D1-8B3E-D1FFB45D220B}"
+      DTS:From="Package\Stop Log Process OLAP-DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 8"
+      DTS:To="Package\After Process" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{137F295C-30E5-49F3-8F7E-43AB72F9BDC0}"
+      DTS:From="Package\If IsReportDate is 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 9"
+      DTS:To="Package\Is22ofMonth?" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Einschränkung 9 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A18FC2B1-3DE5-451E-86D4-669F3387BD17}"
+      DTS:From="Package\Start Log Process OLAP-DB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Einschränkung 9 1"
+      DTS:To="Package\Process OLAP-DB" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Dieser CDATA-Abschnitt enthält die Layoutinformationen des Pakets, z.B. Informationen wie X-/Y-Koordinaten, Breite und Höhe.-->
+<!--Wenn Sie diesen Abschnitt manuell ändern und Ihnen ein Fehler unterläuft, können Sie ihn löschen. -->
+<!--Das Paket kann zwar weiterhin normal geladen werden, aber frühere Layoutinformationen gehen verloren, und die Elemente auf der Entwurfsoberfläche werden vom Designer automatisch neu angeordnet.-->
+<Objects
+  Version="8">
+  <!--Jeder darunter liegende Knoten enthält Eigenschaften, die sich nicht auf das Laufzeitverhalten auswirken.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,42"
+          Id="Package\After Extract"
+          TopLeft="129.249999999999,365.277777777787" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\After Process"
+          TopLeft="909.694444444444,606.361111111107" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\BKPF_DayLoad"
+          TopLeft="293,295" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\COBK_Dayload"
+          TopLeft="825,297" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Dimension Reports"
+          TopLeft="136.111111111111,204.555555555557" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\Dimension Reports INDEX"
+          TopLeft="346.333333333333,202.666666666667" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Dimension Tables"
+          TopLeft="340.083333333333,126.166666666667" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\Facts BKPF"
+          TopLeft="1056.53282828283,211.595959595967" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Facts BSEG"
+          TopLeft="491.472222222222,294.545454545467" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Facts CO"
+          TopLeft="663.333333333333,295.972222222237" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Facts Remainder"
+          TopLeft="807.732323232323,204.573232323237" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\If Is 22ofMonth is 1\Berichtsserverjob_FoBu"
+          TopLeft="13,10" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="233,76"
+          Size="233,119"
+          Id="Package\If Is 22ofMonth is 1"
+          TopLeft="96.2304769392034,1064.66666666667" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\If Is IsQuarterDay is 1\Berichtsserverjob_Steckbrief"
+          TopLeft="23,10" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="278,67"
+          Size="278,110"
+          Id="Package\If Is IsQuarterDay is 1"
+          TopLeft="939.611111111112,1079.27515723271" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\If Is IsQuarterDay_plus_13 is 1\Berichtsserverjob_AIFM"
+          TopLeft="23,10" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="278,107"
+          Size="278,150"
+          Id="Package\If Is IsQuarterDay_plus_13 is 1"
+          TopLeft="1312,1232" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\If Is MiddleofMonth is 1\Berichtsserverjob_RM"
+          TopLeft="23,26" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="256,89"
+          Size="256,132"
+          Id="Package\If Is MiddleofMonth is 1"
+          TopLeft="72.230476939203,1370" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\If Is TimeForOP is 1\Berichtsserverjob_OP"
+          TopLeft="12,13" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="227,75"
+          Size="227,118"
+          Id="Package\If Is TimeForOP is 1"
+          TopLeft="639.730476939203,1071.27515723271" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\If Is TimeForVKW is 1\Berichtsserverjob_VKW"
+          TopLeft="12,13" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="227,72"
+          Size="227,115"
+          Id="Package\If Is TimeForVKW is 1"
+          TopLeft="368.833333333333,1068.91666666667" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\If IsReportDate is 1\Berichtsserverjobs ausführen"
+          TopLeft="40,7" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="316,104"
+          Size="316,147"
+          Id="Package\If IsReportDate is 1"
+          TopLeft="37.730476939203,775.666666666667" />
+        <NodeLayout
+          Size="379,42"
+          Id="Package\If Start ActicoRules is 1 - cube\P_APP_Calculate_And_Update_Cube_For_AM_Planning_daily_2"
+          TopLeft="25,15" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="446,112"
+          Size="446,155"
+          Id="Package\If Start ActicoRules is 1 - cube"
+          TopLeft="630,1354" />
+        <NodeLayout
+          Size="379,42"
+          Id="Package\If Start ActicoRules is 1 - relational\P_APP_Calculate_And_Update_Cube_For_AM_Planning_daily_1"
+          TopLeft="25,15" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="446,112"
+          Size="446,155"
+          Id="Package\If Start ActicoRules is 1 - relational"
+          TopLeft="194,537" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\ImmoBuKrs"
+          TopLeft="957,58" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Initialize"
+          TopLeft="147.333333333333,122.666666666677" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Is22ofMonth?"
+          TopLeft="90.2304769392034,987.666666666667" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\IsMiddleofMonth?"
+          TopLeft="114,1291" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\IsReportDate?"
+          TopLeft="547.230476939203,372.77515723271" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\JCDS_DeltaLoad"
+          TopLeft="96.230476939203,289.77515723271" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\Notizen"
+          TopLeft="1029.47222222222,297.222222222237" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Process OLAP-DB"
+          TopLeft="899.333333333333,448.779874213837" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\QuarterDay_plus_10?"
+          TopLeft="988.111111111111,990.775157232707" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\QuarterDay_plus_13?"
+          TopLeft="1360,1114" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\SKB1_Dayload"
+          TopLeft="581,130" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\Split Repository-Anwendung für User"
+          TopLeft="512,22" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Start ActicoRules?"
+          TopLeft="332,452" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Start Log Process OLAP-DB"
+          TopLeft="890.333333333333,375.666666666667" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\StartTransformation"
+          TopLeft="115.201257861635,18.157232704417" />
+        <NodeLayout
+          Size="177,44"
+          Id="Package\Stop Log Process OLAP-DB"
+          TopLeft="896.710691823899,530.553459119497" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\StopTransformation"
+          TopLeft="1133.2304769392,1411.77515723271" />
+        <NodeLayout
+          Size="136,42"
+          Id="Package\TimeforOP?"
+          TopLeft="649.230476939203,993.77515723271" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\TimeforVKW?"
+          TopLeft="377.333333333333,991.416666666667" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Transform and Load"
+          TopLeft="324.75,369.472222222227" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Update Hansa_US"
+          TopLeft="416,1410" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung]"
+          TopLeft="267.333333333333,145.416666666672">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="72.75,0"
+              Start="0,0"
+              End="65.25,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="65.25,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 1]"
+          TopLeft="306.111111111111,224.611111111112">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.2222222222221,0"
+              Start="0,0"
+              End="32.7222222222221,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.7222222222221,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 10]"
+          TopLeft="982.772012578616,490.779874213837">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.77358490566"
+              Start="0,0"
+              End="0,32.27358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.27358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 11]"
+          TopLeft="254.230476939203,313.387578616355">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38.769523060797,0"
+              Start="0,0"
+              End="31.269523060797,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31.269523060797,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 12]"
+          TopLeft="500.75,392.123689727468">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="46.4804769392034,0"
+              Start="0,0"
+              End="38.9804769392034,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="38.9804769392034,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 13]"
+          TopLeft="695.230476939203,395.220911949689">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="195.10285639413,0"
+              Start="0,0"
+              End="187.60285639413,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="187.60285639413,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 14]"
+          TopLeft="413.625,411.472222222227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.527777777773"
+              Start="0,0"
+              End="0,33.027777777773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.027777777773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 15]"
+          TopLeft="981.194444444444,648.361111111107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-785.463967505241,127.30555555556"
+              Start="0,0"
+              End="-785.463967505241,119.80555555556">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.65277777778" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59.65277777778"
+                    Point2="0,63.65277777778"
+                    Point3="-4,63.65277777778" />
+                  <mssgle:LineSegment
+                    End="-781.463967505241,63.65277777778" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-781.463967505241,63.65277777778"
+                    Point2="-785.463967505241,63.65277777778"
+                    Point3="-785.463967505241,67.65277777778" />
+                  <mssgle:LineSegment
+                    End="-785.463967505241,119.80555555556" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 16]"
+          TopLeft="205.017295597484,60.157232704417">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.50943396226"
+              Start="0,0"
+              End="0,55.00943396226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.00943396226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 17]"
+          TopLeft="582,1431.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48,0"
+              Start="0,0"
+              End="40.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="40.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 18]"
+          TopLeft="173.730476939203,1029.66666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 19]"
+          TopLeft="447.833333333333,1033.41666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.5"
+              Start="0,0"
+              End="0,28">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 2]"
+          TopLeft="504.083333333333,149.083333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76.916666666667,0"
+              Start="0,0"
+              End="69.416666666667,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="69.416666666667,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 20]"
+          TopLeft="549.333333333333,224.619949494952">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="258.39898989899,0"
+              Start="0,0"
+              End="250.89898989899,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="250.89898989899,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 21]"
+          TopLeft="518.833333333333,1068.91666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="177.063810272537,-33.141509433957"
+              Start="0,0"
+              End="177.063810272537,-25.641509433957">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-12.475309519229" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-12.475309519229"
+                    Point2="0,-16.475309519229"
+                    Point3="4,-16.475309519229" />
+                  <mssgle:LineSegment
+                    End="173.063810272537,-16.475309519229" />
+                  <mssgle:CubicBezierSegment
+                    Point1="173.063810272537,-16.475309519229"
+                    Point2="177.063810272537,-16.475309519229"
+                    Point3="177.063810272537,-20.475309519229" />
+                  <mssgle:LineSegment
+                    End="177.063810272537,-25.641509433957" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 22]"
+          TopLeft="250.230476939203,1064.66666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="176.769523060796,-31.25"
+              Start="0,0"
+              End="176.769523060796,-23.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-11.5453844706291" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-11.5453844706291"
+                    Point2="0,-15.5453844706291"
+                    Point3="4,-15.5453844706291" />
+                  <mssgle:LineSegment
+                    End="172.769523060796,-15.5453844706291" />
+                  <mssgle:CubicBezierSegment
+                    Point1="172.769523060796,-15.5453844706291"
+                    Point2="176.769523060796,-15.5453844706291"
+                    Point3="176.769523060796,-19.5453844706291" />
+                  <mssgle:LineSegment
+                    End="176.769523060796,-23.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 23]"
+          TopLeft="1078.86111111111,1032.77515723271">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.5"
+              Start="0,0"
+              End="0,39">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 24]"
+          TopLeft="887.232323232323,246.573232323237">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-712.00184629312,43.201924909473"
+              Start="0,0"
+              End="-712.00184629312,35.701924909473">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.6009624547365" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.6009624547365"
+                    Point2="0,21.6009624547365"
+                    Point3="-4,21.6009624547365" />
+                  <mssgle:LineSegment
+                    End="-708.00184629312,21.6009624547365" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-708.00184629312,21.6009624547365"
+                    Point2="-712.00184629312,21.6009624547365"
+                    Point3="-712.00184629312,25.6009624547365" />
+                  <mssgle:LineSegment
+                    End="-712.00184629312,35.701924909473" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 25]"
+          TopLeft="716.980476939203,1035.77515723271">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.5"
+              Start="0,0"
+              End="0,28">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 26]"
+          TopLeft="789.730476939203,1071.27515723271">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="260.380634171908,-38.500000000003"
+              Start="0,0"
+              End="260.380634171908,-31.000000000003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-15.2088792366862" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-15.2088792366862"
+                    Point2="0,-19.2088792366862"
+                    Point3="4,-19.2088792366862" />
+                  <mssgle:LineSegment
+                    End="256.380634171908,-19.2088792366862" />
+                  <mssgle:CubicBezierSegment
+                    Point1="256.380634171908,-19.2088792366862"
+                    Point2="260.380634171908,-19.2088792366862"
+                    Point3="260.380634171908,-23.2088792366862" />
+                  <mssgle:LineSegment
+                    End="260.380634171908,-31.000000000003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 27]"
+          TopLeft="976,318.111111111118">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="53.4722222222219,0"
+              Start="0,0"
+              End="45.9722222222219,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="45.9722222222219,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 28]"
+          TopLeft="445,315.772727272734">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="46.4722222222219,0"
+              Start="0,0"
+              End="38.9722222222219,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="38.9722222222219,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 29]"
+          TopLeft="1076,1432.13757861635">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.2304769392031,0"
+              Start="0,0"
+              End="49.7304769392031,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.7304769392031,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 3]"
+          TopLeft="1451,1156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 30]"
+          TopLeft="655.5,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-434.388888888889,32.555555555557"
+              Start="0,0"
+              End="-434.388888888889,25.055555555557">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.2777777777785" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.2777777777785"
+                    Point2="0,16.2777777777785"
+                    Point3="-4,16.2777777777785" />
+                  <mssgle:LineSegment
+                    End="-430.388888888889,16.2777777777785" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-430.388888888889,16.2777777777785"
+                    Point2="-434.388888888889,16.2777777777785"
+                    Point3="-434.388888888889,20.2777777777785" />
+                  <mssgle:LineSegment
+                    End="-434.388888888889,25.055555555557" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 31]"
+          TopLeft="198.115238469602,1333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 32]"
+          TopLeft="290.201257861635,41.0786163522085">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="221.798742138365,0"
+              Start="0,0"
+              End="214.298742138365,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="214.298742138365,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 33]"
+          TopLeft="328.230476939203,1433.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.769523060797,0"
+              Start="0,0"
+              End="80.269523060797,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="80.269523060797,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 34]"
+          TopLeft="415.75,494">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 35]"
+          TopLeft="1217.61111111111,1134.63757861635">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="142.388888888888,0"
+              Start="0,0"
+              End="134.888888888888,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="134.888888888888,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 36]"
+          TopLeft="1312,1309.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1034,0"
+              Start="0,0"
+              End="-1026.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-1026.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 4]"
+          TopLeft="625.472222222222,316.258838383852">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37.8611111111111,0"
+              Start="0,0"
+              End="30.3611111111111,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="30.3611111111111,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 5]"
+          TopLeft="786.333333333333,317.486111111118">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38.666666666667,0"
+              Start="0,0"
+              End="31.166666666667,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31.166666666667,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 6]"
+          TopLeft="1087.47222222222,339.222222222237">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-888.222222222223,26.05555555555"
+              Start="0,0"
+              End="-888.222222222223,18.55555555555">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.02777777777499" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.02777777777499"
+                    Point2="0,13.027777777775"
+                    Point3="-4,13.027777777775" />
+                  <mssgle:LineSegment
+                    End="-884.222222222223,13.027777777775" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-884.222222222223,13.027777777775"
+                    Point2="-888.222222222223,13.027777777775"
+                    Point3="-888.222222222223,17.027777777775" />
+                  <mssgle:LineSegment
+                    End="-888.222222222223,18.55555555555" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 7]"
+          TopLeft="269.249999999999,388.375000000007">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="55.500000000001,0"
+              Start="0,0"
+              End="48.000000000001,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="48.000000000001,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 8]"
+          TopLeft="983.202568134172,574.553459119497">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.80765199161"
+              Start="0,0"
+              End="0,24.30765199161">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.30765199161" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 9]"
+          TopLeft="195.730476939203,922.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.4999999999996,65"
+              Start="0,0"
+              End="-23.4999999999996,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="-4,32.5" />
+                  <mssgle:LineSegment
+                    End="-19.4999999999996,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.4999999999996,32.5"
+                    Point2="-23.4999999999996,32.5"
+                    Point3="-23.4999999999996,36.5" />
+                  <mssgle:LineSegment
+                    End="-23.4999999999996,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Einschränkung 9 1]"
+          TopLeft="979.833333333333,417.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.11320754717"
+              Start="0,0"
+              End="0,23.61320754717">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.61320754717" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

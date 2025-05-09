@@ -1,0 +1,1969 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/12/2017 4:04:10 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DBP331003"
+  DTS:CreatorName="SYSTEM\U103290"
+  DTS:DTSID="{0F3B27AC-77BD-44D0-A560-FFBAD965301A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="IC_DayLoad_SKB1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{56A3E3E1-705E-4D51-8112-84D8143393A3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6B6B711F-7937-4476-890A-1DE199C4642C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TDatum">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{679F153C-4F4F-497D-A698-5B2F76E63866}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Today_min14">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delta_Load_nach Datum"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{593B5758-2CFE-4DBA-BA9A-2625A9442040}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delta_Load_nach Datum"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis)"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="This source component extracts table data from the SAP system"
+              name="SKB1 (Sachkontenstamm Buchungskreis)">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">XtractIS.XtractSourceTable</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates, whether DT_WSTR / DT_NTEXT  is used for string columns (true) or DT_STR / DT_TEXT is used (false)"
+                  name="UsesWideStrings">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the maximum number of rows to be extracted (0 is unlimited)"
+                  expressionType="Notify"
+                  name="MaxRows">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the package size for large data extraction (0 is unlimited)"
+                  expressionType="Notify"
+                  name="PackageSize">20000</property>
+                <property
+                  dataType="System.String"
+                  description="Specify WHERE clause for extraction"
+                  expressionType="Notify"
+                  name="WhereClause">ERDAT &gt;= @Today_min14</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Run the extraction in a background job on SAP"
+                  expressionType="Notify"
+                  name="ExtractInBackgroundJob">false</property>
+                <property
+                  dataType="System.String"
+                  description="Name of the SAP function module for reading tables"
+                  expressionType="Notify"
+                  name="CustomFunctionName">/SAPDS/RFC_STREAM_READ_TABLE</property>
+                <property
+                  dataType="System.Null"
+                  description="Order By clause"
+                  name="OrderBy" />
+                <property
+                  dataType="System.String"
+                  description="Internal definition, please use the editor"
+                  name="InternalDefinition"
+                  typeConverter="NOTBROWSABLE">{
+    "functionName": "/SAPDS/RFC_STREAM_READ_TABLE",
+    "rowsPerPackage": 20000,
+    "whereClause": "ERDAT &gt;= @Today_min14",
+    "runInBackgroundJob": false,
+    "backgroundJobTimeout": 180,
+    "tables": 
+    [
+        {
+            "name": "SKB1",
+            "isView": false,
+            "fields": 
+            [
+                {
+                    "name": "MANDT",
+                    "description": "Mandant",
+                    "abapType": "CharacterString",
+                    "length": 3,
+                    "isPrimaryKey": true,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "BUKRS",
+                    "description": "Buchungskreis",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isPrimaryKey": true,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "SAKNR",
+                    "description": "Nummer des Sachkontos",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isPrimaryKey": true,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "BEGRU",
+                    "description": "Berechtigungsgruppe",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "BUSAB",
+                    "description": "Kürzel des Buchhaltungssachbearbeiters",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "DATLZ",
+                    "description": "CPU-Datum des letzten Verzinsungslaufs",
+                    "abapType": "Date",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "ERDAT",
+                    "description": "Datum, an dem der Satz hinzugefügt wurde",
+                    "abapType": "Date",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "ERNAM",
+                    "description": "Name des Sachbearbeiters, der das Objekt hinzugefügt hat",
+                    "abapType": "CharacterString",
+                    "length": 12,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "FDGRV",
+                    "description": "Finanzdispositionsgruppe",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "FDLEV",
+                    "description": "Finanzdispo-Ebene",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "FIPLS",
+                    "description": "Finanzplanposition",
+                    "abapType": "NumericCharacterString",
+                    "length": 3,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "FSTAG",
+                    "description": "Feldstatusgruppe",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "HBKID",
+                    "description": "Kurzschlüssel für eine Hausbank",
+                    "abapType": "CharacterString",
+                    "length": 5,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "HKTID",
+                    "description": "Kurzschlüssel für eine Kontenverbindung",
+                    "abapType": "CharacterString",
+                    "length": 5,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "KDFSL",
+                    "description": "Schlüssel für Kursdifferenzen auf Fremdwährungskonten",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "MITKZ",
+                    "description": "Konto ist Abstimmkonto",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "MWSKZ",
+                    "description": "Steuerkategorie im Kontenstamm",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "STEXT",
+                    "description": "Zusatztext Sachkonto",
+                    "abapType": "CharacterString",
+                    "length": 50,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "VZSKZ",
+                    "description": "Zinskennzeichen",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "WAERS",
+                    "description": "Kontowährung",
+                    "abapType": "CharacterString",
+                    "length": 5,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "WMETH",
+                    "description": "Kennzeichen: Kontoführung in externem System",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "formattedLength": 1,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "XGKON",
+                    "description": "Geldeingangs- / Geldausgangskonto",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "XINTB",
+                    "description": "Kennzeichen: Konto nur automatisch bebuchbar?",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "XKRES",
+                    "description": "Kennzeichen: Einzelpostenanzeige über Konto möglich?",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "XLOEB",
+                    "description": "Kennzeichen: Konto ist zum Löschen vorgemerkt?",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "XNKON",
+                    "description": "Kennzeichen: Nachkontieren bei automatischen Buchungen ?",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "XOPVW",
+                    "description": "Kennzeichen: Offene-Postenverwaltung ?",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "XSPEB",
+                    "description": "Kennzeichen: Konto ist zum Buchen gesperrt?",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "ZINDT",
+                    "description": "Stichtag der letzten Verzinsung",
+                    "abapType": "Date",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "ZINRT",
+                    "description": "Zinsrhythmus in Monaten",
+                    "abapType": "NumericCharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "ZUAWA",
+                    "description": "Schlüssel für die Sortierung nach Zuordnungsnummern",
+                    "abapType": "CharacterString",
+                    "length": 3,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "ALTKT",
+                    "description": "Alternative Kontonummer im Buchungskreis",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "XMITK",
+                    "description": "Kennzeichen: Abstimmkonto bei der Buchung eingabebereit?",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "RECID",
+                    "description": "Recovery-Kennzeichen",
+                    "abapType": "CharacterString",
+                    "length": 2,
+                    "isSelected": true,
+                    "conversionExit": "ALPHA",
+                    "isClientField": false
+                },
+                {
+                    "name": "FIPOS",
+                    "description": "Finanzposition",
+                    "abapType": "CharacterString",
+                    "length": 14,
+                    "isSelected": true,
+                    "formattedLength": 24,
+                    "conversionExit": "FMCIS",
+                    "isClientField": false
+                },
+                {
+                    "name": "XMWNO",
+                    "description": "Kennzeichen: Steuerkennzeichen kein Mussfeld",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "XSALH",
+                    "description": "Kennzeichen: Salden nur in Hauswährung führen",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "BEWGP",
+                    "description": "Bewertungsgruppe",
+                    "abapType": "CharacterString",
+                    "length": 10,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "INFKY",
+                    "description": "Inflationsschlüssel",
+                    "abapType": "CharacterString",
+                    "length": 8,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "TOGRU",
+                    "description": "Toleranzgruppe für Sachkonten",
+                    "abapType": "CharacterString",
+                    "length": 4,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "XLGCLR",
+                    "description": "OP-Verwaltung je Ledger-Gruppe",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "X_UJ_CLR",
+                    "description": "Erweiterte Offene-Posten-Verwaltung",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "MCAKEY",
+                    "description": "MCA-Schlüssel",
+                    "abapType": "CharacterString",
+                    "length": 5,
+                    "isSelected": true,
+                    "checkTable": "GLE_MCA_TMCAKEY",
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "COCHANGED",
+                    "description": "Kostenrechnungskreisdaten geändert",
+                    "abapType": "CharacterString",
+                    "length": 1,
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                },
+                {
+                    "name": "LAST_CHANGED_TS",
+                    "description": "UTC-Zeitstempel in Kurzform (JJJJMMTThhmmss)",
+                    "abapType": "DecimalTimeStampSeconds",
+                    "isSelected": true,
+                    "conversionExit": "",
+                    "isClientField": false
+                }
+            ]
+        }
+    ],
+    "complexRuntimeParameters": {
+        "scalar": {
+            "User::TDatum": {
+                "type": "String"
+            },
+            "User::Today_min14": {
+                "type": "Number"
+            },
+            "$Project::OLAP_Target_ConnectionString": {
+                "type": "String"
+            },
+            "$Project::RDB_Target_Data_ConnectionString": {
+                "type": "String"
+            },
+            "$Project::RDB_Target_Import_ConnectionString": {
+                "type": "String"
+            },
+            "$Project::RDB_Target_Data_ConnectionString_NET": {
+                "type": "String"
+            }
+        }
+    },
+    "whereSequence": [
+    ]
+}</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable or disable legacy date conversion"
+                  name="UseLegacyDateConversion">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable or disable conversion of SAP dates"
+                  expressionType="Notify"
+                  name="ConvertsDates">false</property>
+                <property
+                  dataType="System.String"
+                  description="Replacement value for 0000XXXX dates (yyyy-MM-dd or NULL)"
+                  expressionType="Notify"
+                  name="MinDateReplacement"
+                  typeConverter="XtractIS.DatePropertyTypeConverter, XtractIS.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f12149c68f4ec1b7">1970-01-01</property>
+                <property
+                  dataType="System.String"
+                  description="Replacement value for 9999XXXX dates (yyyy-MM-dd or NULL)"
+                  expressionType="Notify"
+                  name="MaxDateReplacement"
+                  typeConverter="XtractIS.DatePropertyTypeConverter, XtractIS.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f12149c68f4ec1b7">2099-12-31</property>
+                <property
+                  dataType="System.String"
+                  description="Replacement for invalid dates (yyyy-MM-dd or NULL)"
+                  expressionType="Notify"
+                  name="InvalidDateReplacement"
+                  typeConverter="XtractIS.DatePropertyTypeConverter, XtractIS.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f12149c68f4ec1b7">1970-01-02</property>
+                <property
+                  dataType="System.Int32"
+                  description="Style of result column names"
+                  name="ColumnNameStyle"
+                  typeConverter="XtractIS.ColumnNameStyleConverter, XtractIS.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f12149c68f4ec1b7">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Connections[Xtract SAP Connection]"
+                  connectionManagerID="{182C86A9-1E27-47C2-8A19-0BC115470F1B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[SAP HR2 300]"
+                  description="Xtract SAP Connection"
+                  name="Xtract SAP Connection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput]"
+                  name="XtractOutput">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MANDT]"
+                      dataType="wstr"
+                      description="Mandant"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[MANDT]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MANDT]"
+                      name="MANDT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BUKRS]"
+                      dataType="wstr"
+                      description="Buchungskreis"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[BUKRS]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BUKRS]"
+                      name="BUKRS" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[SAKNR]"
+                      dataType="wstr"
+                      description="Nummer des Sachkontos"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[SAKNR]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[SAKNR]"
+                      name="SAKNR" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BEGRU]"
+                      dataType="wstr"
+                      description="Berechtigungsgruppe"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[BEGRU]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BEGRU]"
+                      name="BEGRU" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BUSAB]"
+                      dataType="wstr"
+                      description="Kürzel des Buchhaltungssachbearbeiters"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[BUSAB]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BUSAB]"
+                      name="BUSAB" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[DATLZ]"
+                      dataType="wstr"
+                      description="CPU-Datum des letzten Verzinsungslaufs"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[DATLZ]"
+                      length="8"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[DATLZ]"
+                      name="DATLZ" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ERDAT]"
+                      dataType="wstr"
+                      description="Datum, an dem der Satz hinzugefügt wurde"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ERDAT]"
+                      length="8"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ERDAT]"
+                      name="ERDAT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ERNAM]"
+                      dataType="wstr"
+                      description="Name des Sachbearbeiters, der das Objekt hinzugefügt hat"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ERNAM]"
+                      length="12"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ERNAM]"
+                      name="ERNAM" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FDGRV]"
+                      dataType="wstr"
+                      description="Finanzdispositionsgruppe"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FDGRV]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FDGRV]"
+                      name="FDGRV" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FDLEV]"
+                      dataType="wstr"
+                      description="Finanzdispo-Ebene"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FDLEV]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FDLEV]"
+                      name="FDLEV" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FIPLS]"
+                      dataType="wstr"
+                      description="Finanzplanposition"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FIPLS]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FIPLS]"
+                      name="FIPLS" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FSTAG]"
+                      dataType="wstr"
+                      description="Feldstatusgruppe"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FSTAG]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FSTAG]"
+                      name="FSTAG" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[HBKID]"
+                      dataType="wstr"
+                      description="Kurzschlüssel für eine Hausbank"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[HBKID]"
+                      length="5"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[HBKID]"
+                      name="HBKID" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[HKTID]"
+                      dataType="wstr"
+                      description="Kurzschlüssel für eine Kontenverbindung"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[HKTID]"
+                      length="5"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[HKTID]"
+                      name="HKTID" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[KDFSL]"
+                      dataType="wstr"
+                      description="Schlüssel für Kursdifferenzen auf Fremdwährungskonten"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[KDFSL]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[KDFSL]"
+                      name="KDFSL" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MITKZ]"
+                      dataType="wstr"
+                      description="Konto ist Abstimmkonto"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[MITKZ]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MITKZ]"
+                      name="MITKZ" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MWSKZ]"
+                      dataType="wstr"
+                      description="Steuerkategorie im Kontenstamm"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[MWSKZ]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MWSKZ]"
+                      name="MWSKZ" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[STEXT]"
+                      dataType="wstr"
+                      description="Zusatztext Sachkonto"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[STEXT]"
+                      length="50"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[STEXT]"
+                      name="STEXT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[VZSKZ]"
+                      dataType="wstr"
+                      description="Zinskennzeichen"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[VZSKZ]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[VZSKZ]"
+                      name="VZSKZ" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[WAERS]"
+                      dataType="wstr"
+                      description="Kontowährung"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[WAERS]"
+                      length="5"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[WAERS]"
+                      name="WAERS" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[WMETH]"
+                      dataType="wstr"
+                      description="Kennzeichen: Kontoführung in externem System"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[WMETH]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[WMETH]"
+                      name="WMETH" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XGKON]"
+                      dataType="wstr"
+                      description="Geldeingangs- / Geldausgangskonto"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XGKON]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XGKON]"
+                      name="XGKON" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XINTB]"
+                      dataType="wstr"
+                      description="Kennzeichen: Konto nur automatisch bebuchbar?"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XINTB]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XINTB]"
+                      name="XINTB" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XKRES]"
+                      dataType="wstr"
+                      description="Kennzeichen: Einzelpostenanzeige über Konto möglich?"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XKRES]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XKRES]"
+                      name="XKRES" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XLOEB]"
+                      dataType="wstr"
+                      description="Kennzeichen: Konto ist zum Löschen vorgemerkt?"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XLOEB]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XLOEB]"
+                      name="XLOEB" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XNKON]"
+                      dataType="wstr"
+                      description="Kennzeichen: Nachkontieren bei automatischen Buchungen ?"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XNKON]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XNKON]"
+                      name="XNKON" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XOPVW]"
+                      dataType="wstr"
+                      description="Kennzeichen: Offene-Postenverwaltung ?"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XOPVW]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XOPVW]"
+                      name="XOPVW" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XSPEB]"
+                      dataType="wstr"
+                      description="Kennzeichen: Konto ist zum Buchen gesperrt?"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XSPEB]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XSPEB]"
+                      name="XSPEB" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ZINDT]"
+                      dataType="wstr"
+                      description="Stichtag der letzten Verzinsung"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ZINDT]"
+                      length="8"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ZINDT]"
+                      name="ZINDT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ZINRT]"
+                      dataType="wstr"
+                      description="Zinsrhythmus in Monaten"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ZINRT]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ZINRT]"
+                      name="ZINRT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ZUAWA]"
+                      dataType="wstr"
+                      description="Schlüssel für die Sortierung nach Zuordnungsnummern"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ZUAWA]"
+                      length="3"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ZUAWA]"
+                      name="ZUAWA" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ALTKT]"
+                      dataType="wstr"
+                      description="Alternative Kontonummer im Buchungskreis"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ALTKT]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ALTKT]"
+                      name="ALTKT" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XMITK]"
+                      dataType="wstr"
+                      description="Kennzeichen: Abstimmkonto bei der Buchung eingabebereit?"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XMITK]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XMITK]"
+                      name="XMITK" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[RECID]"
+                      dataType="wstr"
+                      description="Recovery-Kennzeichen"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[RECID]"
+                      length="2"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[RECID]"
+                      name="RECID" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FIPOS]"
+                      dataType="wstr"
+                      description="Finanzposition"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FIPOS]"
+                      length="14"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FIPOS]"
+                      name="FIPOS" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XMWNO]"
+                      dataType="wstr"
+                      description="Kennzeichen: Steuerkennzeichen kein Mussfeld"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XMWNO]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XMWNO]"
+                      name="XMWNO" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XSALH]"
+                      dataType="wstr"
+                      description="Kennzeichen: Salden nur in Hauswährung führen"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XSALH]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XSALH]"
+                      name="XSALH" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BEWGP]"
+                      dataType="wstr"
+                      description="Bewertungsgruppe"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[BEWGP]"
+                      length="10"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BEWGP]"
+                      name="BEWGP" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[INFKY]"
+                      dataType="wstr"
+                      description="Inflationsschlüssel"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[INFKY]"
+                      length="8"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[INFKY]"
+                      name="INFKY" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[TOGRU]"
+                      dataType="wstr"
+                      description="Toleranzgruppe für Sachkonten"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[TOGRU]"
+                      length="4"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[TOGRU]"
+                      name="TOGRU" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XLGCLR]"
+                      dataType="wstr"
+                      description="OP-Verwaltung je Ledger-Gruppe"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XLGCLR]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XLGCLR]"
+                      name="XLGCLR" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[X_UJ_CLR]"
+                      dataType="wstr"
+                      description="Erweiterte Offene-Posten-Verwaltung"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[X_UJ_CLR]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[X_UJ_CLR]"
+                      name="X_UJ_CLR" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MCAKEY]"
+                      dataType="wstr"
+                      description="MCA-Schlüssel"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[MCAKEY]"
+                      length="5"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MCAKEY]"
+                      name="MCAKEY" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[COCHANGED]"
+                      dataType="wstr"
+                      description="Kostenrechnungskreisdaten geändert"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[COCHANGED]"
+                      length="1"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[COCHANGED]"
+                      name="COCHANGED" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[LAST_CHANGED_TS]"
+                      dataType="numeric"
+                      description="UTC-Zeitstempel in Kurzform (JJJJMMTThhmmss)"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[LAST_CHANGED_TS]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[LAST_CHANGED_TS]"
+                      name="LAST_CHANGED_TS"
+                      precision="15" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[MANDT]"
+                      dataType="wstr"
+                      description="Mandant"
+                      length="3"
+                      name="MANDT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[BUKRS]"
+                      dataType="wstr"
+                      description="Buchungskreis"
+                      length="4"
+                      name="BUKRS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[SAKNR]"
+                      dataType="wstr"
+                      description="Nummer des Sachkontos"
+                      length="10"
+                      name="SAKNR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[BEGRU]"
+                      dataType="wstr"
+                      description="Berechtigungsgruppe"
+                      length="4"
+                      name="BEGRU" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[BUSAB]"
+                      dataType="wstr"
+                      description="Kürzel des Buchhaltungssachbearbeiters"
+                      length="2"
+                      name="BUSAB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[DATLZ]"
+                      dataType="wstr"
+                      description="CPU-Datum des letzten Verzinsungslaufs"
+                      length="8"
+                      name="DATLZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ERDAT]"
+                      dataType="wstr"
+                      description="Datum, an dem der Satz hinzugefügt wurde"
+                      length="8"
+                      name="ERDAT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ERNAM]"
+                      dataType="wstr"
+                      description="Name des Sachbearbeiters, der das Objekt hinzugefügt hat"
+                      length="12"
+                      name="ERNAM" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FDGRV]"
+                      dataType="wstr"
+                      description="Finanzdispositionsgruppe"
+                      length="10"
+                      name="FDGRV" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FDLEV]"
+                      dataType="wstr"
+                      description="Finanzdispo-Ebene"
+                      length="2"
+                      name="FDLEV" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FIPLS]"
+                      dataType="wstr"
+                      description="Finanzplanposition"
+                      length="3"
+                      name="FIPLS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FSTAG]"
+                      dataType="wstr"
+                      description="Feldstatusgruppe"
+                      length="4"
+                      name="FSTAG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[HBKID]"
+                      dataType="wstr"
+                      description="Kurzschlüssel für eine Hausbank"
+                      length="5"
+                      name="HBKID" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[HKTID]"
+                      dataType="wstr"
+                      description="Kurzschlüssel für eine Kontenverbindung"
+                      length="5"
+                      name="HKTID" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[KDFSL]"
+                      dataType="wstr"
+                      description="Schlüssel für Kursdifferenzen auf Fremdwährungskonten"
+                      length="4"
+                      name="KDFSL" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[MITKZ]"
+                      dataType="wstr"
+                      description="Konto ist Abstimmkonto"
+                      length="1"
+                      name="MITKZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[MWSKZ]"
+                      dataType="wstr"
+                      description="Steuerkategorie im Kontenstamm"
+                      length="2"
+                      name="MWSKZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[STEXT]"
+                      dataType="wstr"
+                      description="Zusatztext Sachkonto"
+                      length="50"
+                      name="STEXT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[VZSKZ]"
+                      dataType="wstr"
+                      description="Zinskennzeichen"
+                      length="2"
+                      name="VZSKZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[WAERS]"
+                      dataType="wstr"
+                      description="Kontowährung"
+                      length="5"
+                      name="WAERS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[WMETH]"
+                      dataType="wstr"
+                      description="Kennzeichen: Kontoführung in externem System"
+                      length="2"
+                      name="WMETH" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XGKON]"
+                      dataType="wstr"
+                      description="Geldeingangs- / Geldausgangskonto"
+                      length="1"
+                      name="XGKON" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XINTB]"
+                      dataType="wstr"
+                      description="Kennzeichen: Konto nur automatisch bebuchbar?"
+                      length="1"
+                      name="XINTB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XKRES]"
+                      dataType="wstr"
+                      description="Kennzeichen: Einzelpostenanzeige über Konto möglich?"
+                      length="1"
+                      name="XKRES" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XLOEB]"
+                      dataType="wstr"
+                      description="Kennzeichen: Konto ist zum Löschen vorgemerkt?"
+                      length="1"
+                      name="XLOEB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XNKON]"
+                      dataType="wstr"
+                      description="Kennzeichen: Nachkontieren bei automatischen Buchungen ?"
+                      length="1"
+                      name="XNKON" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XOPVW]"
+                      dataType="wstr"
+                      description="Kennzeichen: Offene-Postenverwaltung ?"
+                      length="1"
+                      name="XOPVW" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XSPEB]"
+                      dataType="wstr"
+                      description="Kennzeichen: Konto ist zum Buchen gesperrt?"
+                      length="1"
+                      name="XSPEB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ZINDT]"
+                      dataType="wstr"
+                      description="Stichtag der letzten Verzinsung"
+                      length="8"
+                      name="ZINDT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ZINRT]"
+                      dataType="wstr"
+                      description="Zinsrhythmus in Monaten"
+                      length="2"
+                      name="ZINRT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ZUAWA]"
+                      dataType="wstr"
+                      description="Schlüssel für die Sortierung nach Zuordnungsnummern"
+                      length="3"
+                      name="ZUAWA" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[ALTKT]"
+                      dataType="wstr"
+                      description="Alternative Kontonummer im Buchungskreis"
+                      length="10"
+                      name="ALTKT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XMITK]"
+                      dataType="wstr"
+                      description="Kennzeichen: Abstimmkonto bei der Buchung eingabebereit?"
+                      length="1"
+                      name="XMITK" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[RECID]"
+                      dataType="wstr"
+                      description="Recovery-Kennzeichen"
+                      length="2"
+                      name="RECID" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[FIPOS]"
+                      dataType="wstr"
+                      description="Finanzposition"
+                      length="14"
+                      name="FIPOS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XMWNO]"
+                      dataType="wstr"
+                      description="Kennzeichen: Steuerkennzeichen kein Mussfeld"
+                      length="1"
+                      name="XMWNO" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XSALH]"
+                      dataType="wstr"
+                      description="Kennzeichen: Salden nur in Hauswährung führen"
+                      length="1"
+                      name="XSALH" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[BEWGP]"
+                      dataType="wstr"
+                      description="Bewertungsgruppe"
+                      length="10"
+                      name="BEWGP" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[INFKY]"
+                      dataType="wstr"
+                      description="Inflationsschlüssel"
+                      length="8"
+                      name="INFKY" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[TOGRU]"
+                      dataType="wstr"
+                      description="Toleranzgruppe für Sachkonten"
+                      length="4"
+                      name="TOGRU" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[XLGCLR]"
+                      dataType="wstr"
+                      description="OP-Verwaltung je Ledger-Gruppe"
+                      length="1"
+                      name="XLGCLR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[X_UJ_CLR]"
+                      dataType="wstr"
+                      description="Erweiterte Offene-Posten-Verwaltung"
+                      length="1"
+                      name="X_UJ_CLR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[MCAKEY]"
+                      dataType="wstr"
+                      description="MCA-Schlüssel"
+                      length="5"
+                      name="MCAKEY" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[COCHANGED]"
+                      dataType="wstr"
+                      description="Kostenrechnungskreisdaten geändert"
+                      length="1"
+                      name="COCHANGED" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].ExternalColumns[LAST_CHANGED_TS]"
+                      dataType="numeric"
+                      description="UTC-Zeitstempel in Kurzform (JJJJMMTThhmmss)"
+                      name="LAST_CHANGED_TS"
+                      precision="15" />
+                  </externalMetadataColumns>
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB-Ziel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;4"
+              description="OLE DB-Ziel"
+              name="T_Import_DIM_SKB1_Dayload"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Die Anzahl der Sekunden für das Timeout eines Befehls. Der Wert &quot;0&quot; zeigt einen unendlichen Timeoutwert an."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Gibt den Namen des zum Öffnen eines Rowsets verwendeten Datenbankobjekts an."
+                  name="OpenRowset">[T_Import_DIM_SKB1]</property>
+                <property
+                  dataType="System.String"
+                  description="Gibt die Variable an, die den Namen des zum Öffnen eines Rowsets verwendeten Datenbankobjekts enthält."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Der auszuführende SQL-Befehl."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Gibt die zu verwendende Spaltencodepage an, wenn keine Codepageinformationen von der Datenquelle verfügbar sind."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Erzwingt die Verwendung des DefaultCodePage-Eigenschaftswerts beim Beschreiben von Zeichendaten."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Gibt den zum Zugreifen auf die Datenbank verwendeten Modus an."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Zeigt an, ob die für Identitätsspalten übergebenen Werte zum Ziel kopiert werden. Bei &quot;False&quot; werden die Werte für Identitätsspalten am Ziel automatisch generiert. Trifft nur zu, wenn die Option &quot;Schnelles Laden&quot; aktiviert ist."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Zeigt an, ob für Spalten, die NULL enthalten, NULL am Ziel eingefügt wird. Bei &quot;False&quot; werden für Spalten, die NULL enthalten, am Ziel die Standardwerte eingefügt. Trifft nur zu, wenn die Option &quot;Schnelles Laden&quot; aktiviert ist."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Gibt die für die Option &quot;Schnelles Laden&quot; zu verwendenden Optionen an. Trifft nur zu, wenn die Option &quot;Schnelles Laden&quot; aktiviert ist."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Gibt an, wann beim Einfügen von Daten Commits ausgegeben werden. Der Wert &quot;0&quot; gibt an, dass ein Commit am Ende des Einfügens von Daten ausgegeben wird. Trifft nur zu, wenn die Option &quot;Schnelles Laden&quot; aktiviert ist."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Connections[OleDbConnection]"
+                  connectionManagerID="{BFEDBFE4-7EDF-4461-8BC5-5AFFBD941D82}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[RDB_Target_Data]"
+                  description="Die für den Zugriff auf die Datenbank verwendete OLE DB-Laufzeitverbindung."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels]"
+                  errorOrTruncationOperation="Einfügen"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Eingabe des OLE DB-Ziels">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[MANDT]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="MANDT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MANDT]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MANDT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[BUKRS]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="BUKRS"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BUKRS]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BUKRS]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[SAKNR]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="SAKNR"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[SAKNR]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[SAKNR]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[BEGRU]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="BEGRU"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BEGRU]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BEGRU]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[BUSAB]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="BUSAB"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BUSAB]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BUSAB]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[DATLZ]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="DATLZ"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[DATLZ]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[DATLZ]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[ERDAT]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="ERDAT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ERDAT]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ERDAT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[ERNAM]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="ERNAM"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ERNAM]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ERNAM]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[FDGRV]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="FDGRV"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FDGRV]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FDGRV]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[FDLEV]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FDLEV"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FDLEV]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FDLEV]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[FIPLS]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="FIPLS"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FIPLS]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FIPLS]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[FSTAG]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="FSTAG"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FSTAG]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FSTAG]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[HBKID]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="HBKID"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[HBKID]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[HBKID]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[HKTID]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="HKTID"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[HKTID]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[HKTID]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[KDFSL]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="KDFSL"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[KDFSL]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[KDFSL]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[MITKZ]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MITKZ"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MITKZ]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MITKZ]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[MWSKZ]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="MWSKZ"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MWSKZ]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MWSKZ]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[STEXT]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="STEXT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[STEXT]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[STEXT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[VZSKZ]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="VZSKZ"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VZSKZ]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[VZSKZ]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[WAERS]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="WAERS"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[WAERS]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[WAERS]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[WMETH]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="WMETH"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[WMETH]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[WMETH]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XGKON]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XGKON"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XGKON]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XGKON]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XINTB]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XINTB"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XINTB]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XINTB]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XKRES]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XKRES"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XKRES]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XKRES]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XLOEB]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XLOEB"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XLOEB]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XLOEB]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XNKON]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XNKON"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XNKON]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XNKON]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XOPVW]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XOPVW"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XOPVW]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XOPVW]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XSPEB]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XSPEB"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XSPEB]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XSPEB]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[ZINDT]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="ZINDT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ZINDT]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ZINDT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[ZINRT]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ZINRT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ZINRT]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ZINRT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[ZUAWA]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="ZUAWA"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ZUAWA]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ZUAWA]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[ALTKT]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ALTKT"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ALTKT]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[ALTKT]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XMITK]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XMITK"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XMITK]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XMITK]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[RECID]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="RECID"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[RECID]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[RECID]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[FIPOS]"
+                      cachedDataType="wstr"
+                      cachedLength="14"
+                      cachedName="FIPOS"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FIPOS]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[FIPOS]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XMWNO]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XMWNO"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XMWNO]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XMWNO]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XSALH]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XSALH"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XSALH]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XSALH]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[BEWGP]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="BEWGP"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BEWGP]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[BEWGP]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[INFKY]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="INFKY"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[INFKY]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[INFKY]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[TOGRU]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="TOGRU"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[TOGRU]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[TOGRU]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[XLGCLR]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="XLGCLR"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XLGCLR]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[XLGCLR]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[X_UJ_CLR]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="X_UJ_CLR"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[X_UJ_CLR]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[X_UJ_CLR]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[MCAKEY]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="MCAKEY"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MCAKEY]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[MCAKEY]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[COCHANGED]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="COCHANGED"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[COCHANGED]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[COCHANGED]" />
+                    <inputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].Columns[LAST_CHANGED_TS]"
+                      cachedDataType="numeric"
+                      cachedName="LAST_CHANGED_TS"
+                      cachedPrecision="15"
+                      externalMetadataColumnId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[LAST_CHANGED_TS]"
+                      lineageId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput].Columns[LAST_CHANGED_TS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MANDT]"
+                      dataType="wstr"
+                      length="3"
+                      name="MANDT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BUKRS]"
+                      dataType="wstr"
+                      length="4"
+                      name="BUKRS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[SAKNR]"
+                      dataType="wstr"
+                      length="10"
+                      name="SAKNR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BEGRU]"
+                      dataType="wstr"
+                      length="4"
+                      name="BEGRU" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BUSAB]"
+                      dataType="wstr"
+                      length="2"
+                      name="BUSAB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[DATLZ]"
+                      dataType="wstr"
+                      length="8"
+                      name="DATLZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ERDAT]"
+                      dataType="wstr"
+                      length="8"
+                      name="ERDAT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ERNAM]"
+                      dataType="wstr"
+                      length="12"
+                      name="ERNAM" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FDGRV]"
+                      dataType="wstr"
+                      length="10"
+                      name="FDGRV" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FDLEV]"
+                      dataType="wstr"
+                      length="2"
+                      name="FDLEV" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FIPLS]"
+                      dataType="wstr"
+                      length="3"
+                      name="FIPLS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FSTAG]"
+                      dataType="wstr"
+                      length="4"
+                      name="FSTAG" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[HBKID]"
+                      dataType="wstr"
+                      length="5"
+                      name="HBKID" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[HKTID]"
+                      dataType="wstr"
+                      length="5"
+                      name="HKTID" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[KDFSL]"
+                      dataType="wstr"
+                      length="4"
+                      name="KDFSL" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MITKZ]"
+                      dataType="wstr"
+                      length="1"
+                      name="MITKZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MWSKZ]"
+                      dataType="wstr"
+                      length="2"
+                      name="MWSKZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[STEXT]"
+                      dataType="wstr"
+                      length="50"
+                      name="STEXT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[VZSKZ]"
+                      dataType="wstr"
+                      length="2"
+                      name="VZSKZ" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[WAERS]"
+                      dataType="wstr"
+                      length="5"
+                      name="WAERS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[WMETH]"
+                      dataType="wstr"
+                      length="2"
+                      name="WMETH" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XGKON]"
+                      dataType="wstr"
+                      length="1"
+                      name="XGKON" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XINTB]"
+                      dataType="wstr"
+                      length="1"
+                      name="XINTB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XKRES]"
+                      dataType="wstr"
+                      length="1"
+                      name="XKRES" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XLOEB]"
+                      dataType="wstr"
+                      length="1"
+                      name="XLOEB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XNKON]"
+                      dataType="wstr"
+                      length="1"
+                      name="XNKON" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XOPVW]"
+                      dataType="wstr"
+                      length="1"
+                      name="XOPVW" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XSPEB]"
+                      dataType="wstr"
+                      length="1"
+                      name="XSPEB" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ZINDT]"
+                      dataType="wstr"
+                      length="8"
+                      name="ZINDT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ZINRT]"
+                      dataType="wstr"
+                      length="2"
+                      name="ZINRT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ZUAWA]"
+                      dataType="wstr"
+                      length="3"
+                      name="ZUAWA" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[ALTKT]"
+                      dataType="wstr"
+                      length="10"
+                      name="ALTKT" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XMITK]"
+                      dataType="wstr"
+                      length="1"
+                      name="XMITK" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[RECID]"
+                      dataType="wstr"
+                      length="2"
+                      name="RECID" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[FIPOS]"
+                      dataType="wstr"
+                      length="14"
+                      name="FIPOS" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XMWNO]"
+                      dataType="wstr"
+                      length="1"
+                      name="XMWNO" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XSALH]"
+                      dataType="wstr"
+                      length="1"
+                      name="XSALH" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[BEWGP]"
+                      dataType="wstr"
+                      length="10"
+                      name="BEWGP" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[INFKY]"
+                      dataType="wstr"
+                      length="8"
+                      name="INFKY" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[TOGRU]"
+                      dataType="wstr"
+                      length="4"
+                      name="TOGRU" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[XLGCLR]"
+                      dataType="wstr"
+                      length="1"
+                      name="XLGCLR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[X_UJ_CLR]"
+                      dataType="wstr"
+                      length="1"
+                      name="X_UJ_CLR" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[MCAKEY]"
+                      dataType="wstr"
+                      length="5"
+                      name="MCAKEY" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[COCHANGED]"
+                      dataType="wstr"
+                      length="1"
+                      name="COCHANGED" />
+                    <externalMetadataColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels].ExternalColumns[LAST_CHANGED_TS]"
+                      dataType="numeric"
+                      name="LAST_CHANGED_TS"
+                      precision="15" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Outputs[Fehlerausgabe des OLE DB-Ziels]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Fehlerausgabe des OLE DB-Ziels"
+                  synchronousInputId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Outputs[Fehlerausgabe des OLE DB-Ziels].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Outputs[Fehlerausgabe des OLE DB-Ziels].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Outputs[Fehlerausgabe des OLE DB-Ziels].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Outputs[Fehlerausgabe des OLE DB-Ziels].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Delta_Load_nach Datum.Paths[XtractOutput]"
+              endId="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload.Inputs[Eingabe des OLE DB-Ziels]"
+              name="XtractOutput"
+              startId="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis).Outputs[XtractOutput]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Dieser CDATA-Abschnitt enthält die Layoutinformationen des Pakets, z.B. Informationen wie X-/Y-Koordinaten, Breite und Höhe.-->
+<!--Wenn Sie diesen Abschnitt manuell ändern und Ihnen ein Fehler unterläuft, können Sie ihn löschen. -->
+<!--Das Paket kann zwar weiterhin normal geladen werden, aber frühere Layoutinformationen gehen verloren, und die Elemente auf der Entwurfsoberfläche werden vom Designer automatisch neu angeordnet.-->
+<Objects
+  Version="8">
+  <!--Jeder darunter liegende Knoten enthält Eigenschaften, die sich nicht auf das Laufzeitverhalten auswirken.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Delta_Load_nach Datum"
+          TopLeft="154,132" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Delta_Load_nach Datum">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="274,42"
+          Id="Package\Delta_Load_nach Datum\SKB1 (Sachkontenstamm Buchungskreis)"
+          TopLeft="60,170" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload"
+          TopLeft="108,262" />
+        <EdgeLayout
+          Id="Package\Delta_Load_nach Datum.Paths[XtractOutput]"
+          TopLeft="197,212">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22,50"
+              Start="0,0"
+              End="22,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="4,25" />
+                  <mssgle:LineSegment
+                    End="18,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18,25"
+                    Point2="22,25"
+                    Point3="22,29" />
+                  <mssgle:LineSegment
+                    End="22,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Delta_Load_nach Datum\T_Import_DIM_SKB1_Dayload">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
